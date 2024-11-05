@@ -9,6 +9,7 @@ import RoomDetails from "../Pages/Room/RoomDetails";
 import AdminLayout from "../components/Layout/AdminLayout";
 import CreateRoom from "../Pages/admin/RoomManagement/CreateRoom";
 import ManageRoom from "../Pages/admin/RoomManagement/ManageRoom";
+import UpdateRoom from "../Pages/admin/RoomManagement/UpdateRoom";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
       {
         path: "manage-rooms",
         element: <ManageRoom />,
+      },
+      {
+        path: "manage-rooms/update-rooms/:id",
+        element: <UpdateRoom />,
       },
     ],
   },

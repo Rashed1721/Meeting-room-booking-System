@@ -38,6 +38,15 @@ export const roomApi = baseApi.injectEndpoints({
         };
       },
     }),
+    DeleteRoom: builder.mutation({
+      query: (id: string) => {
+        console.log("Deleting room:", id);
+        return {
+          url: `/rooms/${id}`,
+          method: "DELETE",
+        };
+      },
+    }),
   }),
 });
 
@@ -46,4 +55,5 @@ export const {
   useGetSingleRoomQuery,
   useAddRoomMutation,
   useUpdateRoomMutation,
+  useDeleteRoomMutation,
 } = roomApi;

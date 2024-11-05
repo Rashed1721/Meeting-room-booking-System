@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button, Modal } from "antd";
 import { useGetAllRoomsQuery } from "../../../redux/features/admin/roomManagement/meetingRoom";
+import { NavLink } from "react-router-dom";
 
 export type TRoom = {
   name: string;
@@ -90,13 +91,11 @@ const ManageRoom = () => {
                 <td className="py-3 px-6 text-left">${room.pricePerSlot}</td>
                 {/* Action Buttons */}
                 <td className="py-3 px-6 text-center">
-                  <Button
-                    type="link"
-                    onClick={() => handleUpdate(room)}
-                    className="text-blue-600 hover:text-blue-800 font-medium mr-2"
-                  >
-                    Update
-                  </Button>
+                  <NavLink to={`/admin/manage-rooms/update-rooms/${room._id}`}>
+                    <Button className="text-blue-600 hover:text-blue-800 font-medium mr-2">
+                      Update
+                    </Button>
+                  </NavLink>
                   <Button
                     type="link"
                     onClick={() => showDeleteModal(room.roomNo)}
