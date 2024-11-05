@@ -1,39 +1,42 @@
 import { useState } from "react";
 import { Button, Modal } from "antd";
-import { useDeleteRoomMutation } from "../../../redux/features/admin/roomManagement/meetingRoom";
+
 import { NavLink } from "react-router-dom";
-import { useGetAllSlotsQuery } from "../../../redux/features/admin/slotManagement/slotManagement";
+import {
+  useDeleteSlotMutation,
+  useGetAllSlotsQuery,
+} from "../../../redux/features/admin/slotManagement/slotManagement";
 
 const ManageSlot = () => {
   const { data: AllSlots, error } = useGetAllSlotsQuery(undefined);
-  const [DeleteRoom] = useDeleteRoomMutation();
+  const [DeleteSlot] = useDeleteSlotMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [roomToDelete, setRoomToDelete] = useState<string | null>(null);
+  const [slotToDelete, setSlotToDelete] = useState<string | null>(null);
 
   if (error) {
     return <div>Error fetching slots.</div>;
   }
 
-  const showDeleteModal = (roomId: string) => {
-    setRoomToDelete(roomId);
+  const showDeleteModal = (slotId: string) => {
+    setSlotToDelete(slotId);
     setIsModalVisible(true);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
-    setRoomToDelete(null);
+    setSlotToDelete(null);
   };
 
   const handleConfirmDelete = () => {
-    if (roomToDelete !== null) {
-      handleDelete(roomToDelete);
+    if (slotToDelete !== null) {
+      handleDelete(slotToDelete);
     }
     setIsModalVisible(false);
   };
 
-  const handleDelete = (roomId: string) => {
-    console.log("Deleting Room No:", roomId);
-    DeleteRoom(roomId);
+  const handleDelete = (slotId: string) => {
+    console.log("Deleting Room No:", slotId);
+    DeleteSlot(slotId);
   };
 
   return (
@@ -66,7 +69,7 @@ const ManageSlot = () => {
                   </NavLink>
                   <Button
                     type="link"
-                    onClick={() => showDeleteModal(slot.id)}
+                    onClick={() => showDeleteModal(slot._id)}
                     className="text-red-600 hover:text-red-800 font-medium"
                   >
                     Delete

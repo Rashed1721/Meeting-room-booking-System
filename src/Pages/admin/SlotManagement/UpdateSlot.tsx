@@ -25,7 +25,7 @@ const UpdateSlot = () => {
   };
 
   if (isLoading) return <div>Loading...</div>;
-  // if (error) return <div>Error fetching slot details</div>;
+  if (error) return <div>Error fetching slot details</div>;
 
   return (
     <div className="p-4">
