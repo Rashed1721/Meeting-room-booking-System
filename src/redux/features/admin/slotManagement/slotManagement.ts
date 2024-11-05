@@ -31,10 +31,10 @@ const slotApi = baseApi.injectEndpoints({
       },
     }),
     UpdateSlot: builder.mutation({
-      query: ({ id, slotInfo }) => {
-        console.log("Updating slot:", id, slotInfo);
+      query: ({ slotInfo, id }) => {
+        console.log("Updating slot from api==>:", id, slotInfo);
         return {
-          url: `/slot/${id}`,
+          url: `/slots/${id}`,
           method: "PUT",
           body: slotInfo,
         };

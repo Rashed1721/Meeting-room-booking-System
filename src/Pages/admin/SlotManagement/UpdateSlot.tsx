@@ -8,21 +8,24 @@ import { TSlot } from "../../../types/slot";
 
 const UpdateSlot = () => {
   const { id } = useParams();
-  const { data: slot, error, isLoading } = useGetSingleSlotQuery(id);
+
+  const { data: slot, isLoading } = useGetSingleSlotQuery(id);
   console.log("slot ==>", slot);
-  const [updateSlot] = useUpdateSlotMutation();
+  const [updateSlot, { error }] = useUpdateSlotMutation();
 
   const { register, handleSubmit, reset } = useForm<TSlot>();
 
   const onSubmit: SubmitHandler<TSlot> = (data) => {
     console.log("Updated slot data:", data);
     const slotInfo = data;
+
     updateSlot({ slotInfo, id });
+    console.log("error==>", error);
     reset();
   };
 
   if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching slot details</div>;
+  // if (error) return <div>Error fetching slot details</div>;
 
   return (
     <div className="p-4">
@@ -35,7 +38,7 @@ const UpdateSlot = () => {
           <label className="font-medium text-gray-600">Room ID</label>
           <input
             {...register("room", { required: true })}
-            defaultValue={slot?.data?._id}
+            defaultValue={slot?.data?.room}
             placeholder="Room ObjectId"
             className="input-field border border-gray-300"
           />
