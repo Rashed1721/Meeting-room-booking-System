@@ -28,6 +28,16 @@ export const roomApi = baseApi.injectEndpoints({
         };
       },
     }),
+    UpdateRoom: builder.mutation({
+      query: ({ id, roomInfo }) => {
+        console.log("Updating room:", id, roomInfo);
+        return {
+          url: `/rooms/${id}`,
+          method: "PUT",
+          body: roomInfo,
+        };
+      },
+    }),
   }),
 });
 
@@ -35,4 +45,5 @@ export const {
   useGetAllRoomsQuery,
   useGetSingleRoomQuery,
   useAddRoomMutation,
+  useUpdateRoomMutation,
 } = roomApi;
