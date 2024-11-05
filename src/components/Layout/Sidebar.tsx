@@ -20,6 +20,20 @@ const Sidebar = () => {
         },
       ],
     },
+    {
+      key: "Slot",
+      label: "Slot Management",
+      children: [
+        {
+          key: "3",
+          label: <NavLink to="/admin/add-slots">Add Slots</NavLink>,
+        },
+        {
+          key: "4",
+          label: <NavLink to="/admin/manage-slots">Manage Slots</NavLink>,
+        },
+      ],
+    },
   ];
   return (
     <Sider

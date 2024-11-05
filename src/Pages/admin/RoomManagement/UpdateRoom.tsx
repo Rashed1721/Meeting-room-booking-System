@@ -9,6 +9,7 @@ import { TRoom } from "../../../types";
 const UpdateRoom = () => {
   const { id } = useParams();
   const { data: room, error, isLoading } = useGetSingleRoomQuery(id);
+
   const [updateRoom] = useUpdateRoomMutation();
 
   const { register, handleSubmit, reset } = useForm<TRoom>();
@@ -16,7 +17,7 @@ const UpdateRoom = () => {
   const onSubmit: SubmitHandler<TRoom> = (data) => {
     console.log("Updated room data:", data);
     const roomInfo = data;
-    updateRoom({ roomInfo, id }); // Assuming your updateRoom mutation requires an ID.
+    updateRoom({ roomInfo, id });
     reset();
   };
 

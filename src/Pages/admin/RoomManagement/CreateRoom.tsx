@@ -1,17 +1,6 @@
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
-import { toast } from "sonner";
 import { useAddRoomMutation } from "../../../redux/features/admin/roomManagement/meetingRoom";
-
-export type TRoom = {
-  name: string;
-  roomNo: number;
-  floorNo: number;
-  capacity: number;
-  pricePerSlot: number;
-  amenities: string[];
-  images: string[];
-  isDeleted: boolean;
-};
+import { TRoom } from "../../../types";
 
 const CreateRoom = () => {
   const [AddRoom, { error, isSuccess }] = useAddRoomMutation();

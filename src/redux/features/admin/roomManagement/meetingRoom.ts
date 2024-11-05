@@ -38,6 +38,7 @@ export const roomApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     DeleteRoom: builder.mutation({
       query: (id: string) => {
         console.log("Deleting room:", id);

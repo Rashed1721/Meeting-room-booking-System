@@ -10,6 +10,9 @@ import AdminLayout from "../components/Layout/AdminLayout";
 import CreateRoom from "../Pages/admin/RoomManagement/CreateRoom";
 import ManageRoom from "../Pages/admin/RoomManagement/ManageRoom";
 import UpdateRoom from "../Pages/admin/RoomManagement/UpdateRoom";
+import CreateSlot from "../Pages/admin/SlotManagement/CreateSlot";
+import ManageSlot from "../Pages/admin/SlotManagement/ManageSlot";
+import UpdateSlot from "../Pages/admin/SlotManagement/UpdateSlot";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +58,18 @@ const router = createBrowserRouter([
       {
         path: "manage-rooms/update-rooms/:id",
         element: <UpdateRoom />,
+      },
+      {
+        path: "add-slots",
+        element: <CreateSlot />,
+      },
+      {
+        path: "manage-slots",
+        element: <ManageSlot />,
+      },
+      {
+        path: "manage-slots/update-slots/:id",
+        element: <UpdateSlot />,
       },
     ],
   },

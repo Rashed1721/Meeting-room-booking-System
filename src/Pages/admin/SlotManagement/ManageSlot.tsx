@@ -1,19 +1,17 @@
 import { useState } from "react";
 import { Button, Modal } from "antd";
-import {
-  useDeleteRoomMutation,
-  useGetAllRoomsQuery,
-} from "../../../redux/features/admin/roomManagement/meetingRoom";
+import { useDeleteRoomMutation } from "../../../redux/features/admin/roomManagement/meetingRoom";
 import { NavLink } from "react-router-dom";
+import { useGetAllSlotsQuery } from "../../../redux/features/admin/slotManagement/slotManagement";
 
-const ManageRoom = () => {
-  const { data: AllRooms, error } = useGetAllRoomsQuery(undefined);
+const ManageSlot = () => {
+  const { data: AllSlots, error } = useGetAllSlotsQuery(undefined);
   const [DeleteRoom] = useDeleteRoomMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [roomToDelete, setRoomToDelete] = useState<string | null>(null);
 
   if (error) {
-    return <div>Error fetching rooms.</div>;
+    return <div>Error fetching slots.</div>;
   }
 
   const showDeleteModal = (roomId: string) => {
@@ -34,65 +32,41 @@ const ManageRoom = () => {
   };
 
   const handleDelete = (roomId: string) => {
-    console.log("Deleting Room No:", roomNo);
+    console.log("Deleting Room No:", roomId);
     DeleteRoom(roomId);
-    // Add deletion logic here, e.g., API call to delete the room
   };
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Manage Rooms</h1>
+      <h1 className="text-2xl font-semibold mb-4">Manage Slots</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white shadow-md rounded-lg">
           <thead>
             <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-              <th className="py-3 px-6 text-left">Image</th>
-              <th className="py-3 px-6 text-left">Room Name</th>
-              <th className="py-3 px-6 text-left">Room No.</th>
-              <th className="py-3 px-6 text-left">Floor No.</th>
-              <th className="py-3 px-6 text-left">Capacity</th>
-              <th className="py-3 px-6 text-left">Price Per Slot</th>
+              <th className="py-3 px-6 text-left">Date</th>
+              <th className="py-3 px-6 text-left">Start Time</th>
+              <th className="py-3 px-6 text-left">End Time</th>
               <th className="py-3 px-6 text-center">Actions</th>
             </tr>
           </thead>
           <tbody className="text-gray-700 text-sm font-light">
-            {AllRooms?.data?.map((room) => (
+            {AllSlots?.data?.map((slot, index) => (
               <tr
-                key={room.roomNo}
+                key={slot.id || index} // Fallback to index if slot.id is missing
                 className="border-b border-gray-200 hover:bg-gray-100"
               >
-                {/* Room Image */}
-                <td className="py-3 px-6 text-left">
-                  {room.images.length > 0 ? (
-                    <img
-                      src={room.images[0]}
-                      alt={room.name}
-                      className="h-10 w-10 object-cover rounded"
-                    />
-                  ) : (
-                    <span>No Image</span>
-                  )}
-                </td>
-                {/* Room Name */}
-                <td className="py-3 px-6 text-left">{room.name}</td>
-                {/* Room No. */}
-                <td className="py-3 px-6 text-left">{room.roomNo}</td>
-                {/* Floor No. */}
-                <td className="py-3 px-6 text-left">{room.floorNo}</td>
-                {/* Capacity */}
-                <td className="py-3 px-6 text-left">{room.capacity}</td>
-                {/* Price Per Slot */}
-                <td className="py-3 px-6 text-left">${room.pricePerSlot}</td>
-                {/* Action Buttons */}
+                <td className="py-3 px-6 text-left">{slot.date}</td>
+                <td className="py-3 px-6 text-left">{slot.startTime}</td>
+                <td className="py-3 px-6 text-left">{slot.endTime}</td>
                 <td className="py-3 px-6 text-center">
-                  <NavLink to={`/admin/manage-rooms/update-rooms/${room._id}`}>
+                  <NavLink to={`/admin/manage-slots/update-slots/${slot._id}`}>
                     <Button className="text-blue-600 hover:text-blue-800 font-medium mr-2">
                       Update
                     </Button>
                   </NavLink>
                   <Button
                     type="link"
-                    onClick={() => showDeleteModal(room._id)}
+                    onClick={() => showDeleteModal(slot.id)}
                     className="text-red-600 hover:text-red-800 font-medium"
                   >
                     Delete
@@ -104,9 +78,7 @@ const ManageRoom = () => {
         </table>
       </div>
 
-      {/* Delete Confirmation Modal */}
       <Modal
-        // title="Are you sure?"
         visible={isModalVisible}
         onCancel={handleCancel}
         footer={[
@@ -123,10 +95,10 @@ const ManageRoom = () => {
           </Button>,
         ]}
       >
-        <h3 className="text-lg">Are you sure you want to delete this room?</h3>
+        <h3 className="text-lg">Are you sure you want to delete this slot?</h3>
       </Modal>
     </div>
   );
 };
 
-export default ManageRoom;
+export default ManageSlot;
