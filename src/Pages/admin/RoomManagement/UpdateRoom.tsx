@@ -4,17 +4,7 @@ import {
   useGetSingleRoomQuery,
   useUpdateRoomMutation,
 } from "../../../redux/features/admin/roomManagement/meetingRoom";
-
-export type TRoom = {
-  name: string;
-  roomNo: number;
-  floorNo: number;
-  capacity: number;
-  pricePerSlot: number;
-  amenities: string[];
-  images: string[];
-  isDeleted: boolean;
-};
+import { TRoom } from "../../../types";
 
 const UpdateRoom = () => {
   const { id } = useParams();

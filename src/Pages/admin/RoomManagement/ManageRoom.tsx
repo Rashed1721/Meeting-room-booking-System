@@ -1,30 +1,23 @@
 import { useState } from "react";
 import { Button, Modal } from "antd";
-import { useGetAllRoomsQuery } from "../../../redux/features/admin/roomManagement/meetingRoom";
+import {
+  useDeleteRoomMutation,
+  useGetAllRoomsQuery,
+} from "../../../redux/features/admin/roomManagement/meetingRoom";
 import { NavLink } from "react-router-dom";
-
-export type TRoom = {
-  name: string;
-  roomNo: number;
-  floorNo: number;
-  capacity: number;
-  pricePerSlot: number;
-  amenities: string[];
-  images: string[];
-  isDeleted: boolean;
-};
 
 const ManageRoom = () => {
   const { data: AllRooms, error } = useGetAllRoomsQuery(undefined);
+  const [DeleteRoom] = useDeleteRoomMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [roomToDelete, setRoomToDelete] = useState<number | null>(null);
+  const [roomToDelete, setRoomToDelete] = useState<string | null>(null);
 
   if (error) {
     return <div>Error fetching rooms.</div>;
   }
 
-  const showDeleteModal = (roomNo: number) => {
-    setRoomToDelete(roomNo);
+  const showDeleteModal = (roomId: string) => {
+    setRoomToDelete(roomId);
     setIsModalVisible(true);
   };
 
@@ -40,8 +33,9 @@ const ManageRoom = () => {
     setIsModalVisible(false);
   };
 
-  const handleDelete = (roomNo: number) => {
-    console.log("Deleting Room No:", roomNo);
+  const handleDelete = (roomId: string) => {
+    console.log("Deleting Room No:", roomId);
+    DeleteRoom(roomId);
     // Add deletion logic here, e.g., API call to delete the room
   };
 
@@ -98,7 +92,7 @@ const ManageRoom = () => {
                   </NavLink>
                   <Button
                     type="link"
-                    onClick={() => showDeleteModal(room.roomNo)}
+                    onClick={() => showDeleteModal(room._id)}
                     className="text-red-600 hover:text-red-800 font-medium"
                   >
                     Delete
