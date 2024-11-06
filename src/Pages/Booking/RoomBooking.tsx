@@ -1,26 +1,35 @@
 import { useEffect, useState } from "react";
 import { DatePicker, Select, Spin } from "antd";
-import { useForm, Controller } from "react-hook-form"; // Import Controller
-import { useParams } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
+import { useNavigate, useParams } from "react-router-dom";
 import { useAppSelector } from "../../redux/hook";
 import { useGetSingleUserQuery } from "../../redux/features/user/user";
-import { useGetAllSlotsQuery } from "../../redux/features/admin/slotManagement/slotManagement";
+import {
+  useGetAllSlotsQuery,
+  useGetSingleSlotQuery,
+} from "../../redux/features/admin/slotManagement/slotManagement";
+import { useGetSingleRoomQuery } from "../../redux/features/admin/roomManagement/meetingRoom";
 
 const RoomBooking = () => {
   const { roomId } = useParams();
-  const { register, handleSubmit, setValue, control } = useForm(); // Added control
+  const { register, handleSubmit, setValue, control } = useForm();
   const [selectedDate, setSelectedDate] = useState(null);
+  const [SingleSlotId, setSingleSlotId] = useState("");
   const userData = useAppSelector((state) => state.auth.user);
   const { data: user } = useGetSingleUserQuery(userData!.userId);
+  const { data: room } = useGetSingleRoomQuery(roomId);
+  const { data: slot } = useGetSingleSlotQuery(SingleSlotId);
+
+  console.log({ slot });
+  const navigate = useNavigate();
 
   const { data: availableSlots, isLoading } = useGetAllSlotsQuery({
     roomId,
     selectedDate: selectedDate?.format("YYYY-MM-DD"),
   });
 
-  console.log({ availableSlots, isLoading, user });
+  console.log({ availableSlots, isLoading, room });
 
-  // Pre-fill user information using setValue if user data exists
   useEffect(() => {
     if (user) {
       setValue("name", user?.data?.name);
@@ -31,17 +40,31 @@ const RoomBooking = () => {
   }, [user, setValue]);
 
   // Handle date change
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateChange = (data) => {
+    setSelectedDate(data);
   };
 
   const onSubmit = (data) => {
-    // Accessing selected time slot value here
-    const selectedTimeSlot = data.timeSlot;
+    setSingleSlotId(data.timeSlot);
     const date = selectedDate?.format("YYYY-MM-DD");
-    console.log("Booking data:", { ...data, selectedTimeSlot, date });
+    console.log("Booking data:", { ...data, date });
+    console.log(data.name);
 
-    // Handle booking submission logic here
+    const bookingSummary = {
+      roomName: room?.data?.name,
+      date,
+      roomId: roomId,
+      Timeslot: data.timeSlot,
+      timeSlot: `${availableSlots?.data?.startTime} - ${availableSlots?.data?.endTime}`,
+      cost: room?.data?.pricePerSlot,
+      userName: data?.name,
+      userPhone: data?.phone,
+      userEmail: data?.email,
+      userAddress: data?.address,
+    };
+
+    // Navigate to BookingSummary page with bookingSummary data
+    navigate("/booking-summary", { state: bookingSummary });
   };
 
   return (
@@ -105,7 +128,6 @@ const RoomBooking = () => {
           <input
             id="name"
             {...register("name")}
-            readOnly
             className="w-full py-2 px-4 border rounded-lg focus:outline-none"
           />
         </div>
@@ -117,7 +139,6 @@ const RoomBooking = () => {
           <input
             id="email"
             {...register("email")}
-            readOnly
             className="w-full py-2 px-4 border rounded-lg focus:outline-none"
           />
         </div>
@@ -128,7 +149,6 @@ const RoomBooking = () => {
           <input
             id="phone"
             {...register("phone")}
-            readOnly
             className="w-full py-2 px-4 border rounded-lg focus:outline-none"
           />
         </div>
@@ -139,7 +159,6 @@ const RoomBooking = () => {
           <input
             id="address"
             {...register("address")}
-            readOnly
             className="w-full py-2 px-4 border rounded-lg focus:outline-none"
           />
         </div>

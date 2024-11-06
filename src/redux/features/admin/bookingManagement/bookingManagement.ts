@@ -2,6 +2,17 @@ import { baseApi } from "../../../api/baseApi";
 
 export const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
+    addBooking: builder.mutation({
+      query: (BookingInfo) => {
+        console.log("BookingInfo from api==>", BookingInfo);
+        return {
+          url: "/bookings",
+          method: "POST",
+          body: BookingInfo,
+        };
+      },
+    }),
+
     getAllBooking: builder.query({
       query: () => {
         return {
@@ -33,6 +44,7 @@ export const bookingApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useAddBookingMutation,
   useGetAllBookingQuery,
   useUpdateBookingMutation,
   useDeleteBookingMutation,
