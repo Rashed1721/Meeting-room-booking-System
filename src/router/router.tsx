@@ -14,6 +14,7 @@ import CreateSlot from "../Pages/admin/SlotManagement/CreateSlot";
 import ManageSlot from "../Pages/admin/SlotManagement/ManageSlot";
 import UpdateSlot from "../Pages/admin/SlotManagement/UpdateSlot";
 import ManageBooking from "../Pages/admin/BookingManagement/ManageBooking";
+import RoomBooking from "../Pages/Room/RoomBooking";
 
 const router = createBrowserRouter([
   {
@@ -41,8 +42,12 @@ const router = createBrowserRouter([
     element: <MeetingRooms />,
   },
   {
-    path: "/room-details/:id",
+    path: "/meeting-rooms/room-details/:id",
     element: <RoomDetails />,
+  },
+  {
+    path: "/meeting-rooms/room-booking/:roomId",
+    element: <RoomBooking />,
   },
   {
     path: "/admin",

@@ -3,8 +3,8 @@ import { FieldValues } from "react-hook-form";
 
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import PHForm from "../../components/Form/PHForm";
-import PHInput from "../../components/Form/PHInput";
+import PHForm from "../../components/Form/BSForm";
+import PHInput from "../../components/Form/BSInput";
 import Navbar from "../shared/Navbar/Navbar";
 import { verifyToken } from "../../utils/verifyToken";
 import { setUser, TUser } from "../../redux/features/auth/authSlice";

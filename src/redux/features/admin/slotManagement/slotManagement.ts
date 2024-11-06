@@ -14,10 +14,14 @@ const slotApi = baseApi.injectEndpoints({
     }),
 
     GetAllSlots: builder.query({
-      query: () => {
+      query: ({ roomId, selectedDate }) => {
         return {
           url: "/slots/availability",
           method: "GET",
+          params: {
+            roomId: roomId,
+            date: selectedDate,
+          },
         };
       },
     }),

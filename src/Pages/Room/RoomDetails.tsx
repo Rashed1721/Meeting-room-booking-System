@@ -44,9 +44,10 @@ const RoomDetails = () => {
           </ul>
         </div>
 
-        {/* Book Now Button */}
         <button
-          onClick={() => navigate(`/booking/${room.id}`)}
+          onClick={() =>
+            navigate(`/meeting-rooms/room-booking/${room?.data?._id}`)
+          }
           className="mt-6 px-6 py-3 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-lg transition duration-300"
         >
           Book Now

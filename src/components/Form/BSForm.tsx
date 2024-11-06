@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form } from "antd";
 import { ReactNode } from "react";
 import {
@@ -18,7 +19,7 @@ type TFormProps = {
   className?: string;
 } & TFormConfig;
 
-const PHForm = ({
+const BSForm = ({
   onSubmit,
   children,
   defaultValues,
@@ -55,4 +56,4 @@ const PHForm = ({
   );
 };
 
-export default PHForm;
+export default BSForm;

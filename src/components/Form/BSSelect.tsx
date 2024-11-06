@@ -8,7 +8,7 @@ type THSelectProps = {
   disabled?: boolean;
 };
 
-const PHSelect = ({ label, name, options, disabled }: THSelectProps) => {
+const BSSelect = ({ label, name, options, disabled }: THSelectProps) => {
   return (
     <Controller
       name={name}
@@ -28,4 +28,4 @@ const PHSelect = ({ label, name, options, disabled }: THSelectProps) => {
   );
 };
 
-export default PHSelect;
+export default BSSelect;
