@@ -12,12 +12,13 @@ export const bookingApi = baseApi.injectEndpoints({
     }),
 
     updateBooking: builder.mutation({
-      query: ({ id, bookingInfo }) => {
-        console.log("from update booking==>", id, bookingInfo);
+      query: ({ id, bookingValue }) => {
+        console.log("from update booking==>", id, bookingValue);
+
         return {
           url: `/bookings/${id}`,
           method: "PUT",
-          body: bookingInfo,
+          body: bookingValue,
         };
       },
     }),
@@ -25,7 +26,7 @@ export const bookingApi = baseApi.injectEndpoints({
     deleteBooking: builder.mutation({
       query: (id) => ({
         url: `/bookings/${id}`,
-        method: "",
+        method: "DELETE",
       }),
     }),
   }),

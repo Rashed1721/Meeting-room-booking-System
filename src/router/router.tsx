@@ -13,6 +13,7 @@ import UpdateRoom from "../Pages/admin/RoomManagement/UpdateRoom";
 import CreateSlot from "../Pages/admin/SlotManagement/CreateSlot";
 import ManageSlot from "../Pages/admin/SlotManagement/ManageSlot";
 import UpdateSlot from "../Pages/admin/SlotManagement/UpdateSlot";
+import ManageBooking from "../Pages/admin/BookingManagement/ManageBooking";
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
       {
         path: "manage-slots/update-slots/:id",
         element: <UpdateSlot />,
+      },
+      {
+        path: "manage-bookings/",
+        element: <ManageBooking />,
       },
     ],
   },
