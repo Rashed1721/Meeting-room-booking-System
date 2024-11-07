@@ -1,6 +1,7 @@
-import { Button, Layout } from "antd";
+import { Layout } from "antd";
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
+import Navbar from "../../Pages/shared/Navbar/Navbar";
 const { Header, Content } = Layout;
 
 const AdminLayout = () => {
@@ -9,7 +10,7 @@ const AdminLayout = () => {
       <Sidebar />
       <Layout>
         <Header style={{ padding: 0 }}>
-          <Button>Logout</Button>
+          <Navbar />
         </Header>
         <Content style={{ margin: "24px 16px 0" }}>
           <div

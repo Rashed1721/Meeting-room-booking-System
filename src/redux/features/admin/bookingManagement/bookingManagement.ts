@@ -4,7 +4,7 @@ export const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addBooking: builder.mutation({
       query: (BookingInfo) => {
-        console.log("BookingInfo from api==>", BookingInfo);
+        // console.log("BookingInfo from api==>", BookingInfo);
         return {
           url: "/bookings",
           method: "POST",

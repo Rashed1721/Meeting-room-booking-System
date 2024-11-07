@@ -7,7 +7,7 @@ import {
   useUpdateBookingMutation,
 } from "../../../redux/features/admin/bookingManagement/bookingManagement";
 
-const BookingList = () => {
+const ManageBooking = () => {
   const { data: bookings } = useGetAllBookingQuery(undefined);
   console.log({ bookings });
   const [deleteBooking] = useDeleteBookingMutation();
@@ -128,4 +128,4 @@ const BookingList = () => {
   );
 };
 
-export default BookingList;
+export default ManageBooking;

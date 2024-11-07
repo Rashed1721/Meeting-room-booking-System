@@ -11,17 +11,23 @@ import CreateRoom from "../Pages/admin/RoomManagement/CreateRoom";
 import ManageRoom from "../Pages/admin/RoomManagement/ManageRoom";
 import UpdateRoom from "../Pages/admin/RoomManagement/UpdateRoom";
 import CreateSlot from "../Pages/admin/SlotManagement/CreateSlot";
-import ManageSlot from "../Pages/admin/SlotManagement/ManageSlot";
 import UpdateSlot from "../Pages/admin/SlotManagement/UpdateSlot";
 import ManageBooking from "../Pages/admin/BookingManagement/ManageBooking";
 import RoomBooking from "../Pages/Booking/RoomBooking";
 import BookingSummary from "../Pages/Booking/BookingSummary";
-
+import ManageSlot from "../Pages/admin/SlotManagement/ManageSlot";
+import ManageUsers from "../Pages/user/ManageUsers";
+import MyBookings from "../Pages/user/MyBookings";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
+  // {
+  //   path: "/admin",
+  //   element: <App />,
+  //   children: routeGenerator(adminPaths),
+  // },
   {
     path: "/about",
     element: <AboutUs />,
@@ -85,6 +91,21 @@ const router = createBrowserRouter([
       {
         path: "manage-bookings/",
         element: <ManageBooking />,
+      },
+    ],
+  },
+
+  {
+    path: "/user",
+    element: <AdminLayout />,
+    children: [
+      {
+        path: "manage-user",
+        element: <ManageUsers />,
+      },
+      {
+        path: "my-booking",
+        element: <MyBookings />,
       },
     ],
   },

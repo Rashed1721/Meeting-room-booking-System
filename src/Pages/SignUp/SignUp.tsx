@@ -35,7 +35,6 @@ const SignUp = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
         <Col xs={22} sm={16} md={12} lg={10} xl={8}>
           <PHForm

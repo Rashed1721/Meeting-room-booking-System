@@ -1,6 +1,5 @@
 import { Button, Col, Row } from "antd";
 import { FieldValues } from "react-hook-form";
-
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import PHForm from "../../components/Form/BSForm";
@@ -33,7 +32,7 @@ const Login = () => {
 
       toast.success("Logged in", { id: toastId, duration: 2000 });
 
-      navigate(`/${user.role}/dashboard`);
+      navigate(`/${user.role}`);
     } catch (err) {
       toast.error("Something went wrong", { id: toastId, duration: 2000 });
     }
@@ -54,6 +53,9 @@ const Login = () => {
               </Col>
               <Col span={24}>
                 <PHInput type="password" name="password" label="Password:" />
+                <p>
+                  Don't have any account?<span>signUp</span>
+                </p>
               </Col>
 
               <Col span={24} className="text-center">

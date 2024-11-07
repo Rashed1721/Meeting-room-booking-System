@@ -5,18 +5,7 @@ import { TRoom } from "../../../types";
 const CreateRoom = () => {
   const [AddRoom, { error, isSuccess }] = useAddRoomMutation();
   console.log({ error, isSuccess });
-  const { register, handleSubmit, control, reset } = useForm<TRoom>({
-    defaultValues: {
-      name: "Conference Room A",
-      roomNo: 101,
-      floorNo: 1,
-      capacity: 10,
-      pricePerSlot: 50,
-      amenities: ["WiFi"],
-      images: ["https://example.com/image.jpg"],
-      isDeleted: false,
-    },
-  });
+  const { register, handleSubmit, control, reset } = useForm<TRoom>({});
 
   const {
     fields: amenitiesFields,
@@ -39,9 +28,7 @@ const CreateRoom = () => {
   const onSubmit: SubmitHandler<TRoom> = (data) => {
     const roomInfo = data;
     AddRoom(roomInfo);
-
     console.log({ error, isSuccess });
-
     reset();
   };
 

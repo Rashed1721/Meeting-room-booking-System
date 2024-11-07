@@ -1,3 +1,4 @@
+import MeetingRooms from "../Room/MeetingRooms";
 import Footer from "../shared/Footer";
 import Navbar from "../shared/Navbar/Navbar";
 import HeroSection from "./HeroSection";
@@ -9,9 +10,10 @@ import WhyChooseUs from "./WhyChooseUs";
 const Home = () => {
   return (
     <div>
-      <Navbar isAuthenticated={true} isAdmin={true} />
+      <Navbar />
       <HeroSection />
       <ServiceAdvertisement />
+      <MeetingRooms />
       <WhyChooseUs />
       <HowItWorks />
       <Testimonials />

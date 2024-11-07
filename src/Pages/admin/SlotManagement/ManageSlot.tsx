@@ -8,7 +8,8 @@ import {
 } from "../../../redux/features/admin/slotManagement/slotManagement";
 
 const ManageSlot = () => {
-  const { data: AllSlots, error } = useGetAllSlotsQuery(undefined);
+  const { data: AllSlots, error } = useGetAllSlotsQuery({});
+  console.log({ AllSlots, error });
   const [DeleteSlot] = useDeleteSlotMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [slotToDelete, setSlotToDelete] = useState<string | null>(null);

@@ -1,9 +1,19 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { useAppDispatch, useAppSelector } from "../../../redux/hook";
+import { logout } from "../../../redux/features/auth/authSlice";
 
-const Navbar = ({ isAuthenticated, isAdmin }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const user = useAppSelector((state) => state.auth.user);
+  const dispatch = useAppDispatch();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/");
+  };
 
   return (
     <header className="bg-white shadow-md">
@@ -30,13 +40,15 @@ const Navbar = ({ isAuthenticated, isAdmin }) => {
           <Link to="/contact" className="text-gray-700 hover:text-blue-500">
             Contact Us
           </Link>
-          <Link to="/login" className="text-gray-700 hover:text-blue-500">
-            Login/Register
-          </Link>
+          {!user && (
+            <Link to="/login" className="text-gray-700 hover:text-blue-500">
+              Login/Register
+            </Link>
+          )}
         </nav>
 
         {/* User Icon / Dropdown */}
-        {isAuthenticated && (
+        {user && (
           <div className="relative">
             <FaUserCircle
               className="text-3xl text-gray-700 cursor-pointer md:ml-4"
@@ -53,18 +65,19 @@ const Navbar = ({ isAuthenticated, isAdmin }) => {
                       My Bookings
                     </Link>
                   </li>
-                  {isAdmin && (
-                    <li>
-                      <Link
-                        to="/dashboard"
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
-                  )}
                   <li>
-                    <button className="w-full text-left block px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <Link
+                      to={`/${user.role}`} // Navigates based on user role
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
                       Logout
                     </button>
                   </li>
@@ -110,12 +123,14 @@ const Navbar = ({ isAuthenticated, isAdmin }) => {
           >
             Contact Us
           </Link>
-          <Link
-            to="/login"
-            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-          >
-            Login/Register
-          </Link>
+          {!user && (
+            <Link
+              to="/login"
+              className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+            >
+              Login/Register
+            </Link>
+          )}
         </nav>
       )}
     </header>
