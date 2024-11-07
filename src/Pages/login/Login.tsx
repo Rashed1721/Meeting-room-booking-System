@@ -1,6 +1,6 @@
 import { Button, Col, Row } from "antd";
 import { FieldValues } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import PHForm from "../../components/Form/BSForm";
 import PHInput from "../../components/Form/BSInput";
@@ -45,21 +45,32 @@ const Login = () => {
         <Col xs={22} sm={16} md={12} lg={10} xl={8}>
           <PHForm
             onSubmit={onSubmit}
-            className="p-4 bg-white rounded-lg shadow-lg"
+            className="p-6 bg-white rounded-lg shadow-lg max-w-md mx-auto"
           >
             <Row gutter={[16, 16]}>
               <Col span={24}>
                 <PHInput type="text" name="email" label="Email:" />
               </Col>
+
               <Col span={24}>
                 <PHInput type="password" name="password" label="Password:" />
-                <p>
-                  Don't have any account?<span>signUp</span>
+                <p className="mt-2 text-sm text-gray-500">
+                  Don’t have an account?{" "}
+                  <Link
+                    to="/signup"
+                    className="text-blue-600 hover:underline font-semibold"
+                  >
+                    Sign Up
+                  </Link>
                 </p>
               </Col>
 
-              <Col span={24} className="text-center">
-                <Button type="primary" htmlType="submit">
+              <Col span={24} className="text-center mt-4">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-md transition duration-200"
+                >
                   Login
                 </Button>
               </Col>
