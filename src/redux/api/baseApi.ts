@@ -4,7 +4,7 @@ import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
 
 const basequery = fetchBaseQuery({
-  baseUrl: "http://localhost:5000/api/",
+  baseUrl: "https://room-ease-server.vercel.app/api",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
