@@ -1,6 +1,7 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import { TSlot } from "../../../types/slot";
 import { useAddSlotMutation } from "../../../redux/features/admin/slotManagement/slotManagement";
+import { toast } from "sonner";
 
 const CreateSlot = () => {
   const [addSlot, { error, isSuccess }] = useAddSlotMutation();
@@ -17,9 +18,18 @@ const CreateSlot = () => {
   });
 
   const onSubmit: SubmitHandler<TSlot> = (data) => {
-    const roomInfo = data;
-    addSlot(roomInfo);
-    reset();
+    const toastId = toast.loading("Creating Slots...");
+    try {
+      const roomInfo = data;
+      addSlot(roomInfo);
+      reset();
+      toast.success("successfully Created Slots", {
+        id: toastId,
+        duration: 2000,
+      });
+    } catch (err: any) {
+      toast.error(`${err?.data?.message}`, { id: toastId, duration: 2000 });
+    }
   };
 
   return (

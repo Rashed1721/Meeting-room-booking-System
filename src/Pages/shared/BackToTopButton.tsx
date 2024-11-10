@@ -10,7 +10,7 @@ const BackToTopButton = ({ showButton }: any) => {
 
   return (
     <button
-      className={`fixed bottom-0 right-0 grid mb-4 mr-4 z-30 rounded-full shadow back-to-top-btn size-10 place-items-center bg-green-500 shadow-primary/60 text-white ${
+      className={`fixed bottom-0 right-0 grid mb-4 mr-4 z-30 rounded-full shadow back-to-top-btn size-10 place-items-center bg-[#1e69b8] shadow-primary/60 text-white ${
         showButton && "active"
       }`}
       onClick={scrollToTop}

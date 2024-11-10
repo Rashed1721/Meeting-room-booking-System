@@ -1,4 +1,9 @@
+import img1 from "../../assets/aboutus/man-1.jpg";
+import img2 from "../../assets/aboutus/man-2.jpg";
+import img3 from "../../assets/aboutus/man-3.jpg"; // Fix image path if incorrect
+
 import { motion } from "framer-motion";
+
 const AboutUs = () => {
   return (
     <div className="bg-gray-100 text-gray-800">
@@ -41,19 +46,19 @@ const AboutUs = () => {
               name: "Alice Johnson",
               role: "CEO",
               bio: "Visionary leader with 15+ years in tech.",
-              img: "path/to/alice.jpg",
+              img: img1,
             },
             {
               name: "Michael Lee",
               role: "CTO",
               bio: "Tech enthusiast leading product innovation.",
-              img: "path/to/michael.jpg",
+              img: img2,
             },
             {
               name: "Sara Kim",
               role: "COO",
               bio: "Operations expert streamlining processes.",
-              img: "path/to/sara.jpg",
+              img: img3,
             },
           ].map((member, index) => (
             <motion.div

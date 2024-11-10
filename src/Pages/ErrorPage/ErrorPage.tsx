@@ -16,7 +16,7 @@ export default function ErrorPage() {
           {" "}
           <Link
             to={"/"}
-            className="text-primary hover:text-white  hover:bg-primary border border-[#1e69b8] duration-300 px-3 py-1"
+            className="text-primary hover:text-black  hover:bg-primary border border-[#1e69b8] duration-300 px-3 py-1"
           >
             Back to Home
           </Link>

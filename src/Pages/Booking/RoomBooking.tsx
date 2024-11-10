@@ -9,20 +9,16 @@ import {
   useGetSingleSlotQuery,
 } from "../../redux/features/admin/slotManagement/slotManagement";
 import { useGetSingleRoomQuery } from "../../redux/features/admin/roomManagement/meetingRoom";
-import Navbar from "../shared/Navbar";
 
 const RoomBooking = () => {
   const { roomId } = useParams();
   const { register, handleSubmit, setValue, control } = useForm();
   const [selectedDate, setSelectedDate] = useState<any | null>(null);
-  console.log(selectedDate);
   const [SingleSlotId, setSingleSlotId] = useState("");
   const userData = useAppSelector((state) => state.auth.user);
-  console.log("userData", userData);
   const { data: user } = useGetSingleUserQuery(userData!.userId);
   const { data: room } = useGetSingleRoomQuery(roomId);
   const { data: slot } = useGetSingleSlotQuery(SingleSlotId);
-
   console.log({ slot });
   const navigate = useNavigate();
 
@@ -48,8 +44,6 @@ const RoomBooking = () => {
   const onSubmit = (data: any) => {
     setSingleSlotId(data.timeSlot);
     const date = selectedDate?.format("YYYY-MM-DD");
-    console.log("Booking data:", { ...data, date });
-    console.log(data.name);
 
     const bookingSummary = {
       roomName: room?.data?.name,
@@ -70,7 +64,6 @@ const RoomBooking = () => {
 
   return (
     <div>
-      <Navbar />
       <div className="max-w-3xl mx-auto px-4 py-8 bg-white shadow-lg rounded-lg mt-12">
         <form onSubmit={handleSubmit(onSubmit)}>
           {/* Date Selection */}
@@ -103,15 +96,15 @@ const RoomBooking = () => {
                   Available Time Slots
                 </label>
                 <Controller
-                  name="timeSlot" // Register timeSlot field
-                  control={control} // Bind the control
-                  defaultValue="" // Default value (empty, or use a specific slot ID if needed)
+                  name="timeSlot"
+                  control={control}
+                  defaultValue=""
                   render={({ field }) => (
                     <Select
-                      {...field} // Spread field to ensure proper registration
+                      {...field}
                       id="timeSlot"
                       placeholder="Select a time slot"
-                      className="w-full py-2 px-4 border rounded-lg"
+                      className="w-full py-2 px-4 border  rounded-lg"
                       options={availableSlots?.data?.map((slot: any) => ({
                         value: slot._id,
                         label: `${slot.startTime} - ${slot.endTime}`,

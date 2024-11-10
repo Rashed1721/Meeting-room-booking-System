@@ -7,7 +7,7 @@ import {
 import { NavLink } from "react-router-dom";
 
 const ManageRoom = () => {
-  const { data: AllRooms, error } = useGetAllRoomsQuery({});
+  const { data: AllRooms, error } = useGetAllRoomsQuery({ limit: 20 });
   console.log({ AllRooms, error });
   const [DeleteRoom] = useDeleteRoomMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);

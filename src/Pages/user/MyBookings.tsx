@@ -1,6 +1,5 @@
 import { useGetMyBookingQuery } from "../../redux/features/my-booking/myBooking";
 import { useAppSelector } from "../../redux/hook";
-import Navbar from "../shared/Navbar";
 
 const MyBookings = () => {
   const user = useAppSelector((state) => state.auth.user);
@@ -8,17 +7,21 @@ const MyBookings = () => {
   const { data: myBookings, error } = useGetMyBookingQuery(user?.userId);
 
   if (error) {
-    return <p className="text-red-500">Error loading bookings.</p>;
+    return (
+      <div className="h-screen">
+        <p className="text-red-500 text-center mt-7">Error loading bookings.</p>
+        ;
+      </div>
+    );
   }
 
   return (
     <div className="container mx-auto p-4 ">
-      <Navbar />
       <div className="flex justify-center my-8">
         <h1 className="text-3xl font-semibold">My Bookings</h1>
       </div>
       {myBookings?.data?.length ? (
-        <div className="overflow-x-auto shadow-md rounded-lg">
+        <div className="overflow-x-auto shadow-md rounded-lg h-screen ">
           <table className="min-w-full bg-white border border-gray-200">
             <thead>
               <tr className="bg-gray-100">
@@ -26,8 +29,9 @@ const MyBookings = () => {
                   Room Name
                 </th>
                 <th className="px-6 py-4 text-left font-semibold text-gray-700 border-b">
-                  Date & Time
+                  Date And Time
                 </th>
+
                 <th className="px-6 py-4 text-left font-semibold text-gray-700 border-b">
                   Status
                 </th>
@@ -50,6 +54,7 @@ const MyBookings = () => {
                   <td className="px-6 py-4 border-b text-gray-800">
                     {new Date(booking.date).toLocaleString()}
                   </td>
+
                   <td className="px-6 py-4 border-b">
                     <span
                       className={`px-2 py-1 rounded text-sm font-medium ${

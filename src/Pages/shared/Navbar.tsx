@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo/System Name */}
         <Link to="/" className="text-xl font-bold text-blue-600">
-          System Name
+          RoomEase
         </Link>
 
         {/* Nav Links for Desktop */}
@@ -67,16 +67,15 @@ const Navbar = () => {
                       </Link>
                     </li>
                   )}
-                  {user.role === "admin" && (
-                    <li>
-                      <Link
-                        to={`/${user.role}`} // Navigates based on user role
-                        className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                      >
-                        Dashboard
-                      </Link>
-                    </li>
-                  )}
+
+                  <li>
+                    <Link
+                      to={`/${user.role}`} // Navigates based on user role
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Dashboard
+                    </Link>
+                  </li>
 
                   <li>
                     <button

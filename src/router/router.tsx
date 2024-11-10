@@ -13,7 +13,6 @@ import ManageBooking from "../Pages/admin/BookingManagement/ManageBooking";
 import RoomBooking from "../Pages/Booking/RoomBooking";
 import BookingSummary from "../Pages/Booking/BookingSummary";
 import ManageSlot from "../Pages/admin/SlotManagement/ManageSlot";
-import ManageUsers from "../Pages/user/ManageUsers";
 import MyBookings from "../Pages/user/MyBookings";
 import AllMeetingRoom from "../Pages/Room/AllMeetingRoom";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -149,15 +148,6 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        path: "manage-user",
-        element: (
-          <ProtectedRoute>
-            {" "}
-            <ManageUsers />
-          </ProtectedRoute>
-        ),
-      },
       {
         path: "my-booking",
         element: (

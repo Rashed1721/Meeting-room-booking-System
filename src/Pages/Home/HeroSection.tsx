@@ -11,8 +11,11 @@ const HeroSection = () => {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4">
-          Welcome to Our Site
+        <h1 className="text-xl md:text-3xl font-bold mb-4">
+          Book Your Ideal Meeting Room with Ease.
+        </h1>
+        <h1 className="text-xl md:text-2xl font-bold mb-4">
+          Efficient, hassle-free room booking for all your meeting needs
         </h1>
         <a
           href="/meeting-rooms"

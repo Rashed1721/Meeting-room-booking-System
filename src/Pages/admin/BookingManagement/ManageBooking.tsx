@@ -9,7 +9,7 @@ import {
 
 const ManageBooking = () => {
   const { data: bookings } = useGetAllBookingQuery(undefined);
-  console.log({ bookings });
+
   const [deleteBooking] = useDeleteBookingMutation();
   const [updateBooking, { error }] = useUpdateBookingMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -49,7 +49,6 @@ const ManageBooking = () => {
   };
 
   const handleDelete = (bookingId: string) => {
-    console.log("Deleting Booking ID:", bookingId);
     deleteBooking(bookingId);
   };
 

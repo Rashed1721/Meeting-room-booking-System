@@ -5,6 +5,7 @@ import {
   useUpdateSlotMutation,
 } from "../../../redux/features/admin/slotManagement/slotManagement";
 import { TSlot } from "../../../types/slot";
+import { toast } from "sonner";
 
 const UpdateSlot = () => {
   const { id } = useParams();
@@ -16,12 +17,21 @@ const UpdateSlot = () => {
   const { register, handleSubmit, reset } = useForm<TSlot>();
 
   const onSubmit: SubmitHandler<TSlot> = (data) => {
-    console.log("Updated slot data:", data);
-    const slotInfo = data;
+    const toastId = toast.loading("Updating SLot...");
+    try {
+      const slotInfo = data;
 
-    updateSlot({ slotInfo, id });
-    console.log("error==>", error);
-    reset();
+      updateSlot({ slotInfo, id });
+
+      reset();
+
+      toast.success("Updated Slot Successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+    } catch (err: any) {
+      toast.error(`${err?.data?.message}`, { id: toastId, duration: 2000 });
+    }
   };
 
   if (isLoading) return <div>Loading...</div>;
