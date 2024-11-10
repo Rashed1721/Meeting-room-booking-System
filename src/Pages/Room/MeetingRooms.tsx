@@ -3,7 +3,7 @@ import { useGetAllRoomsQuery } from "../../redux/features/admin/roomManagement/m
 import { useNavigate } from "react-router-dom";
 
 const MeetingRooms = () => {
-  const { data: rooms, isLoading, error } = useGetAllRoomsQuery(undefined);
+  const { data: rooms, isLoading, error } = useGetAllRoomsQuery({});
   const navigate = useNavigate();
 
   if (isLoading) {
