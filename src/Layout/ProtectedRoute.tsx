@@ -4,14 +4,14 @@ import { ReactNode } from "react";
 import { useAppSelector } from "../redux/hook";
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const token = useAppSelector((state) => state.auth.token);
+  const user = useAppSelector((state) => state.auth.user);
   const location = useLocation();
 
-  if (!token) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
+  if (user && user?.role === "user") {
+    return children;
   }
 
-  return children;
+  return <Navigate to="/login" state={{ from: location }} replace />;
 };
 
 export default ProtectedRoute;

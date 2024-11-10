@@ -2,7 +2,7 @@ import { Layout, Menu } from "antd";
 import { useAppSelector } from "../redux/hook";
 import { sidebarItemsGenerator } from "../utils/sidebarItemsGenerator";
 import { adminPaths } from "../router/AdminPaths";
-import { userPaths } from "../router/userRoutes";
+import { userPaths } from "../router/userPaths";
 
 const { Sider } = Layout;
 const userRole = {

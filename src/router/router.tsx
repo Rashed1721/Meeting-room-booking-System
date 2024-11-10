@@ -21,6 +21,7 @@ import Login from "../Pages/login/Login";
 import ProtectedRoute from "../Layout/ProtectedRoute";
 import AdminLayout from "../Layout/AdminLayout";
 import MainLayout from "../Layout/MainLayout";
+import AdminRoute from "./adminRoutes";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -84,15 +85,27 @@ const router = createBrowserRouter([
     children: [
       {
         path: "add-rooms",
-        element: <CreateRoom />,
+        element: (
+          <AdminRoute>
+            <CreateRoom />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-rooms",
-        element: <ManageRoom />,
+        element: (
+          <AdminRoute>
+            <ManageRoom />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-rooms/update-rooms/:id",
-        element: <UpdateRoom />,
+        element: (
+          <AdminRoute>
+            <UpdateRoom />
+          </AdminRoute>
+        ),
       },
       {
         path: "add-slots",
@@ -122,11 +135,20 @@ const router = createBrowserRouter([
     children: [
       {
         path: "manage-user",
-        element: <ManageUsers />,
+        element: (
+          <ProtectedRoute>
+            {" "}
+            <ManageUsers />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "my-booking",
-        element: <MyBookings />,
+        element: (
+          <ProtectedRoute>
+            <MyBookings />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
