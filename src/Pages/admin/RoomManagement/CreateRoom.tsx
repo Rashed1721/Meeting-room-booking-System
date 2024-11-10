@@ -1,10 +1,10 @@
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { useAddRoomMutation } from "../../../redux/features/admin/roomManagement/meetingRoom";
 import { TRoom } from "../../../types";
+import { toast } from "sonner";
 
 const CreateRoom = () => {
   const [AddRoom, { error, isSuccess }] = useAddRoomMutation();
-  console.log({ error, isSuccess });
   const { register, handleSubmit, control, reset } = useForm<TRoom>({});
 
   const {
@@ -26,10 +26,20 @@ const CreateRoom = () => {
   });
 
   const onSubmit: SubmitHandler<TRoom> = (data) => {
-    const roomInfo = data;
-    AddRoom(roomInfo);
-    console.log({ error, isSuccess });
-    reset();
+    const toastId = toast.loading("Creating Room...");
+    try {
+      const roomInfo = data;
+      console.log(roomInfo);
+      AddRoom(roomInfo);
+      console.log({ error, isSuccess });
+      reset();
+      toast.success("Created Room Successfully", {
+        id: toastId,
+        duration: 2000,
+      });
+    } catch (err: any) {
+      toast.error(`${err?.data?.message}`, { id: toastId, duration: 2000 });
+    }
   };
 
   return (

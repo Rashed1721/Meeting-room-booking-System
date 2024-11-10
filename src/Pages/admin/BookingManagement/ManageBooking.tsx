@@ -15,9 +15,9 @@ const ManageBooking = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [bookingToDelete, setBookingToDelete] = useState<string | null>(null);
 
-  // if (error) {
-  //   return <div>Error fetching bookings.</div>;
-  // }
+  if (error) {
+    return <div>Error fetching bookings.</div>;
+  }
 
   const showDeleteModal = (bookingId: string) => {
     setBookingToDelete(bookingId);
@@ -68,7 +68,7 @@ const ManageBooking = () => {
             </tr>
           </thead>
           <tbody className="text-gray-700 text-sm font-light">
-            {bookings?.data?.map((booking, index) => (
+            {bookings?.data?.map((booking: any, index: any) => (
               <tr
                 key={booking.id || index}
                 className="border-b border-gray-200 hover:bg-gray-100"

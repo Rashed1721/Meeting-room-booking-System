@@ -11,15 +11,9 @@ export const roomApi = baseApi.injectEndpoints({
           body: roomInfo,
         };
       },
+      invalidatesTags: ["MeetingRoom"],
     }),
-    // GetAllRooms: builder.query({
-    //   query: () => {
-    //     return {
-    //       url: "/rooms",
-    //       method: "GET",
-    //     };
-    //   },
-    // }),
+
     GetAllRooms: builder.query({
       query: ({
         searchTerm = "",
@@ -39,6 +33,7 @@ export const roomApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["MeetingRoom"],
     }),
 
     GetSingleRoom: builder.query({
@@ -48,6 +43,7 @@ export const roomApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["MeetingRoom"],
     }),
     UpdateRoom: builder.mutation({
       query: ({ id, roomInfo }) => {
@@ -58,6 +54,7 @@ export const roomApi = baseApi.injectEndpoints({
           body: roomInfo,
         };
       },
+      invalidatesTags: ["MeetingRoom"],
     }),
 
     DeleteRoom: builder.mutation({
@@ -68,6 +65,7 @@ export const roomApi = baseApi.injectEndpoints({
           method: "DELETE",
         };
       },
+      invalidatesTags: ["MeetingRoom"],
     }),
   }),
 });

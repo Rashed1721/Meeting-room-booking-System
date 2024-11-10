@@ -21,7 +21,8 @@ import Login from "../Pages/login/Login";
 import ProtectedRoute from "../Layout/ProtectedRoute";
 import AdminLayout from "../Layout/AdminLayout";
 import MainLayout from "../Layout/MainLayout";
-import AdminRoute from "./adminRoutes";
+import AdminRoute from "./PrivateAdminRoute";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -77,9 +78,9 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: (
-      <ProtectedRoute>
+      <AdminRoute>
         <AdminLayout />
-      </ProtectedRoute>
+      </AdminRoute>
     ),
     errorElement: <ErrorPage />,
     children: [
@@ -109,15 +110,30 @@ const router = createBrowserRouter([
       },
       {
         path: "add-slots",
-        element: <CreateSlot />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <CreateSlot />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-slots",
-        element: <ManageSlot />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <ManageSlot />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-slots/update-slots/:id",
-        element: <UpdateSlot />,
+        element: (
+          <AdminRoute>
+            {" "}
+            <UpdateSlot />
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-bookings/",

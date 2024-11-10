@@ -7,8 +7,8 @@ import {
 import { NavLink } from "react-router-dom";
 
 const ManageRoom = () => {
-  const { data: AllRooms, error } = useGetAllRoomsQuery(undefined);
-  console.log({ AllRooms });
+  const { data: AllRooms, error } = useGetAllRoomsQuery({});
+  console.log({ AllRooms, error });
   const [DeleteRoom] = useDeleteRoomMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [roomToDelete, setRoomToDelete] = useState<string | null>(null);
@@ -35,7 +35,6 @@ const ManageRoom = () => {
   };
 
   const handleDelete = (roomId: string) => {
-    console.log("Deleting Room No:", roomNo);
     DeleteRoom(roomId);
     // Add deletion logic here, e.g., API call to delete the room
   };
@@ -57,7 +56,7 @@ const ManageRoom = () => {
             </tr>
           </thead>
           <tbody className="text-gray-700 text-sm font-light">
-            {AllRooms?.data?.map((room) => (
+            {AllRooms?.data?.map((room: any) => (
               <tr
                 key={room.roomNo}
                 className="border-b border-gray-200 hover:bg-gray-100"

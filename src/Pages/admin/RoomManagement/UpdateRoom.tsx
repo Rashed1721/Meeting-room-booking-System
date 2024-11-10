@@ -5,6 +5,7 @@ import {
   useUpdateRoomMutation,
 } from "../../../redux/features/admin/roomManagement/meetingRoom";
 import { TRoom } from "../../../types";
+import { toast } from "sonner";
 
 const UpdateRoom = () => {
   const { id } = useParams();
@@ -15,14 +16,32 @@ const UpdateRoom = () => {
   const { register, handleSubmit, reset } = useForm<TRoom>();
 
   const onSubmit: SubmitHandler<TRoom> = (data) => {
-    console.log("Updated room data:", data);
-    const roomInfo = data;
-    updateRoom({ roomInfo, id });
-    reset();
+    const toastId = toast.loading("Updating...");
+    try {
+      console.log("Updated room data:", data);
+      const roomInfo = data;
+      updateRoom({ roomInfo, id });
+      reset();
+      toast.success("successfully updated.", { id: toastId, duration: 2000 });
+    } catch (err: any) {
+      toast.error(`${err?.data?.message}`, { id: toastId, duration: 2000 });
+    }
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error fetching room details</div>;
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        {/* Loading Spinner */}
+        <div className="w-16 h-16 border-4 border-blue-500 border-solid border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <p className="text-center py-8 text-red-500">Failed to load rooms.</p>
+    );
+  }
 
   return (
     <div className="p-4">

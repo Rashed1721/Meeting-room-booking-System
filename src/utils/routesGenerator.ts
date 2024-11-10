@@ -1,7 +1,7 @@
 // import { TRoute, TUserPath } from '../types';
 
-export const routeGenerator = (items) => {
-  const routes = items.reduce((acc, item) => {
+export const routeGenerator = (items: any) => {
+  const routes = items.reduce((acc: any[], item: any) => {
     if (item.path && item.element) {
       acc.push({
         path: item.path,
@@ -10,7 +10,7 @@ export const routeGenerator = (items) => {
     }
 
     if (item.children) {
-      item.children.forEach((child) => {
+      item.children.forEach((child: any) => {
         acc.push({
           path: child.path!,
           element: child.element,

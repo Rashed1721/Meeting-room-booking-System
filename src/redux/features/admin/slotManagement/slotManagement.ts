@@ -11,6 +11,7 @@ const slotApi = baseApi.injectEndpoints({
           body: slotInfo,
         };
       },
+      invalidatesTags: ["Slot"],
     }),
 
     GetAllSlots: builder.query({
@@ -24,6 +25,7 @@ const slotApi = baseApi.injectEndpoints({
           },
         };
       },
+      providesTags: ["Slot"],
     }),
 
     GetSingleSlot: builder.query({
@@ -33,6 +35,7 @@ const slotApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["Slot"],
     }),
     UpdateSlot: builder.mutation({
       query: ({ slotInfo, id }) => {
@@ -43,6 +46,7 @@ const slotApi = baseApi.injectEndpoints({
           body: slotInfo,
         };
       },
+      invalidatesTags: ["Slot"],
     }),
 
     DeleteSlot: builder.mutation({
@@ -53,6 +57,7 @@ const slotApi = baseApi.injectEndpoints({
           method: "DELETE",
         };
       },
+      invalidatesTags: ["Slot"],
     }),
   }),
 });

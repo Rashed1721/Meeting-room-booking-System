@@ -54,7 +54,7 @@ const ManageSlot = () => {
             </tr>
           </thead>
           <tbody className="text-gray-700 text-sm font-light">
-            {AllSlots?.data?.map((slot, index) => (
+            {AllSlots?.data?.map((slot: any, index: any) => (
               <tr
                 key={slot.id || index} // Fallback to index if slot.id is missing
                 className="border-b border-gray-200 hover:bg-gray-100"

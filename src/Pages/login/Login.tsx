@@ -35,8 +35,8 @@ const Login = () => {
       navigate(user.role === "admin" ? `/${user.role}` : from, {
         replace: true,
       });
-    } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+    } catch (err: any) {
+      toast.error(`${err?.data?.message}`, { id: toastId, duration: 2000 });
     }
   };
 

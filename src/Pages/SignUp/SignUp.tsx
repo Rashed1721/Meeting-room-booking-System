@@ -32,8 +32,8 @@ const SignUp = () => {
       toast.success("Signed up", { id: toastId, duration: 2000 });
 
       navigate(`/${res?.data?.role}`);
-    } catch (err) {
-      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+    } catch (err: any) {
+      toast.error(`${err?.data?.message}`, { id: toastId, duration: 2000 });
     }
   };
 
