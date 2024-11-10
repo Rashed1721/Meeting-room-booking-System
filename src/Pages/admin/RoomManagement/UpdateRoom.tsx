@@ -92,7 +92,7 @@ const UpdateRoom = () => {
 
         <div className="flex flex-col space-y-2">
           <label className="font-medium text-gray-600">Amenities</label>
-          {room?.data?.amenities?.map((amenity, index) => (
+          {room?.data?.amenities?.map((amenity: any, index: any) => (
             <input
               key={index}
               {...register(`amenities.${index}`, { required: true })}
@@ -105,7 +105,7 @@ const UpdateRoom = () => {
 
         <div className="flex flex-col space-y-2">
           <label className="font-medium text-gray-600">Images</label>
-          {room?.data?.images?.map((image, index) => (
+          {room?.data?.images?.map((image: any, index: any) => (
             <input
               key={index}
               {...register(`images.${index}`, { required: true })}

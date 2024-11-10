@@ -8,6 +8,7 @@ import { NavLink } from "react-router-dom";
 
 const ManageRoom = () => {
   const { data: AllRooms, error } = useGetAllRoomsQuery(undefined);
+  console.log({ AllRooms });
   const [DeleteRoom] = useDeleteRoomMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [roomToDelete, setRoomToDelete] = useState<string | null>(null);
@@ -46,7 +47,7 @@ const ManageRoom = () => {
         <table className="min-w-full bg-white shadow-md rounded-lg">
           <thead>
             <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-              <th className="py-3 px-6 text-left">Image</th>
+              <th className="py-3 px-6 text-left">Room Id</th>
               <th className="py-3 px-6 text-left">Room Name</th>
               <th className="py-3 px-6 text-left">Room No.</th>
               <th className="py-3 px-6 text-left">Floor No.</th>
@@ -62,17 +63,7 @@ const ManageRoom = () => {
                 className="border-b border-gray-200 hover:bg-gray-100"
               >
                 {/* Room Image */}
-                <td className="py-3 px-6 text-left">
-                  {room.images.length > 0 ? (
-                    <img
-                      src={room.images[0]}
-                      alt={room.name}
-                      className="h-10 w-10 object-cover rounded"
-                    />
-                  ) : (
-                    <span>No Image</span>
-                  )}
-                </td>
+                <td className="py-3 px-6 text-left">{room._id}</td>
                 {/* Room Name */}
                 <td className="py-3 px-6 text-left">{room.name}</td>
                 {/* Room No. */}

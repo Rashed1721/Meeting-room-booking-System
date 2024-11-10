@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const FeaturedRooms = ({ rooms }) => {
+const FeaturedRooms = ({ rooms }: any) => {
   return (
     <section className="bg-gray-100 py-12">
       <div className="container mx-auto px-4 text-center">
@@ -9,7 +9,7 @@ const FeaturedRooms = ({ rooms }) => {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {rooms.map((room) => (
+          {rooms.map((room: any) => (
             <div
               key={room.id}
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition duration-300"

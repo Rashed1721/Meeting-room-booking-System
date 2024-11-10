@@ -9,13 +9,16 @@ import {
   useGetSingleSlotQuery,
 } from "../../redux/features/admin/slotManagement/slotManagement";
 import { useGetSingleRoomQuery } from "../../redux/features/admin/roomManagement/meetingRoom";
+import Navbar from "../shared/Navbar";
 
 const RoomBooking = () => {
   const { roomId } = useParams();
   const { register, handleSubmit, setValue, control } = useForm();
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedDate, setSelectedDate] = useState<any | null>(null);
+  console.log(selectedDate);
   const [SingleSlotId, setSingleSlotId] = useState("");
   const userData = useAppSelector((state) => state.auth.user);
+  console.log("userData", userData);
   const { data: user } = useGetSingleUserQuery(userData!.userId);
   const { data: room } = useGetSingleRoomQuery(roomId);
   const { data: slot } = useGetSingleSlotQuery(SingleSlotId);
@@ -28,8 +31,6 @@ const RoomBooking = () => {
     selectedDate: selectedDate?.format("YYYY-MM-DD"),
   });
 
-  console.log({ availableSlots, isLoading, room });
-
   useEffect(() => {
     if (user) {
       setValue("name", user?.data?.name);
@@ -40,11 +41,11 @@ const RoomBooking = () => {
   }, [user, setValue]);
 
   // Handle date change
-  const handleDateChange = (data) => {
+  const handleDateChange = (data: any) => {
     setSelectedDate(data);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     setSingleSlotId(data.timeSlot);
     const date = selectedDate?.format("YYYY-MM-DD");
     console.log("Booking data:", { ...data, date });
@@ -68,111 +69,117 @@ const RoomBooking = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-8 bg-white shadow-lg rounded-lg">
-      <form onSubmit={handleSubmit(onSubmit)}>
-        {/* Date Selection */}
-        <div className="mb-6">
-          <label htmlFor="date" className="block text-lg font-semibold mb-2">
-            Select Booking Date
-          </label>
-          <DatePicker
-            id="date"
-            value={selectedDate} // Pass moment object to DatePicker
-            onChange={handleDateChange} // Handle date selection
-            className="w-full py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            format="YYYY-MM-DD"
-          />
-        </div>
-
-        {/* Available Slots */}
-        {isLoading ? (
-          <div className="mb-6 text-center">
-            <Spin tip="Loading slots..." />
+    <div>
+      <Navbar />
+      <div className="max-w-3xl mx-auto px-4 py-8 bg-white shadow-lg rounded-lg mt-12">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {/* Date Selection */}
+          <div className="mb-6">
+            <label htmlFor="date" className="block text-lg font-semibold mb-2">
+              Select Booking Date
+            </label>
+            <DatePicker
+              id="date"
+              value={selectedDate} // Pass moment object to DatePicker
+              onChange={handleDateChange} // Handle date selection
+              className="w-full py-2 px-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              format="YYYY-MM-DD"
+            />
           </div>
-        ) : (
-          availableSlots &&
-          availableSlots?.data?.length > 0 && (
-            <div className="mb-6">
-              <label
-                htmlFor="timeSlot"
-                className="block text-lg font-semibold mb-2"
-              >
-                Available Time Slots
-              </label>
-              <Controller
-                name="timeSlot" // Register timeSlot field
-                control={control} // Bind the control
-                defaultValue="" // Default value (empty, or use a specific slot ID if needed)
-                render={({ field }) => (
-                  <Select
-                    {...field} // Spread field to ensure proper registration
-                    id="timeSlot"
-                    placeholder="Select a time slot"
-                    className="w-full py-2 px-4 border rounded-lg"
-                    options={availableSlots?.data?.map((slot) => ({
-                      value: slot._id,
-                      label: `${slot.startTime} - ${slot.endTime}`,
-                    }))}
-                  />
-                )}
-              />
+
+          {/* Available Slots */}
+          {isLoading ? (
+            <div className="mb-6 text-center">
+              <Spin tip="Loading slots..." />
             </div>
-          )
-        )}
+          ) : (
+            availableSlots &&
+            availableSlots?.data?.length > 0 && (
+              <div className="mb-6">
+                <label
+                  htmlFor="timeSlot"
+                  className="block text-lg font-semibold mb-2"
+                >
+                  Available Time Slots
+                </label>
+                <Controller
+                  name="timeSlot" // Register timeSlot field
+                  control={control} // Bind the control
+                  defaultValue="" // Default value (empty, or use a specific slot ID if needed)
+                  render={({ field }) => (
+                    <Select
+                      {...field} // Spread field to ensure proper registration
+                      id="timeSlot"
+                      placeholder="Select a time slot"
+                      className="w-full py-2 px-4 border rounded-lg"
+                      options={availableSlots?.data?.map((slot: any) => ({
+                        value: slot._id,
+                        label: `${slot.startTime} - ${slot.endTime}`,
+                      }))}
+                    />
+                  )}
+                />
+              </div>
+            )
+          )}
 
-        {/* User Information */}
-        <div className="mb-6">
-          <label htmlFor="name" className="block text-lg font-semibold mb-2">
-            User Name
-          </label>
-          <input
-            id="name"
-            {...register("name")}
-            className="w-full py-2 px-4 border rounded-lg focus:outline-none"
-          />
-        </div>
+          {/* User Information */}
+          <div className="mb-6">
+            <label htmlFor="name" className="block text-lg font-semibold mb-2">
+              User Name
+            </label>
+            <input
+              id="name"
+              {...register("name")}
+              className="w-full py-2 px-4 border rounded-lg focus:outline-none"
+            />
+          </div>
 
-        <div className="mb-6">
-          <label htmlFor="email" className="block text-lg font-semibold mb-2">
-            Email
-          </label>
-          <input
-            id="email"
-            {...register("email")}
-            className="w-full py-2 px-4 border rounded-lg focus:outline-none"
-          />
-        </div>
-        <div className="mb-6">
-          <label htmlFor="phone" className="block text-lg font-semibold mb-2">
-            Phone
-          </label>
-          <input
-            id="phone"
-            {...register("phone")}
-            className="w-full py-2 px-4 border rounded-lg focus:outline-none"
-          />
-        </div>
-        <div className="mb-6">
-          <label htmlFor="address" className="block text-lg font-semibold mb-2">
-            Address
-          </label>
-          <input
-            id="address"
-            {...register("address")}
-            className="w-full py-2 px-4 border rounded-lg focus:outline-none"
-          />
-        </div>
+          <div className="mb-6">
+            <label htmlFor="email" className="block text-lg font-semibold mb-2">
+              Email
+            </label>
+            <input
+              id="email"
+              {...register("email")}
+              className="w-full py-2 px-4 border rounded-lg focus:outline-none"
+            />
+          </div>
+          <div className="mb-6">
+            <label htmlFor="phone" className="block text-lg font-semibold mb-2">
+              Phone
+            </label>
+            <input
+              id="phone"
+              {...register("phone")}
+              className="w-full py-2 px-4 border rounded-lg focus:outline-none"
+            />
+          </div>
+          <div className="mb-6">
+            <label
+              htmlFor="address"
+              className="block text-lg font-semibold mb-2"
+            >
+              Address
+            </label>
+            <input
+              id="address"
+              {...register("address")}
+              className="w-full py-2 px-4 border rounded-lg focus:outline-none"
+            />
+          </div>
 
-        {/* Submit Button */}
-        <div className="text-center">
-          <button
-            type="submit"
-            className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          >
-            Confirm Booking
-          </button>
-        </div>
-      </form>
+          {/* Submit Button */}
+          <div className="text-center">
+            <button
+              type="submit"
+              className="w-full py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              Confirm Booking
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

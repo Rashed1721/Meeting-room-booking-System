@@ -30,7 +30,7 @@ const MeetingRooms = () => {
 
       {/* Rooms Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {rooms?.data?.slice(0, 6).map((room) => (
+        {rooms?.data?.slice(0, 6).map((room: any) => (
           <RoomCard key={room.id} room={room} />
         ))}
       </div>
@@ -38,7 +38,7 @@ const MeetingRooms = () => {
       {/* All Rooms Button */}
       <div className="text-center mt-8">
         <button
-          onClick={() => navigate("/all-rooms")}
+          onClick={() => navigate("/meeting-rooms")}
           className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300"
         >
           All Rooms

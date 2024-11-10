@@ -1,11 +1,4 @@
-import {
-  BaseQueryApi,
-  BaseQueryFn,
-  createApi,
-  DefinitionType,
-  FetchArgs,
-  fetchBaseQuery,
-} from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
 import { logout, setUser } from "../features/auth/authSlice";
 import { toast } from "sonner";
@@ -23,15 +16,15 @@ const basequery = fetchBaseQuery({
   },
 });
 
-const baseQueryWithRefreshToken: BaseQueryFn<
-  FetchArgs,
-  BaseQueryApi,
-  DefinitionType
-> = async (args, api, extraOptions): Promise<any> => {
-  let result = await basequery(args, api, extraOptions);
-  console.log({ result });
+const baseQueryWithRefreshToken = async (
+  args: any,
+  api: any,
+  extraOptions: any
+) => {
+  let result: any = await basequery(args, api, extraOptions);
+
   if (result?.error?.status === 404) {
-    toast.error(result.data.error.message);
+    toast.error(result?.error?.data?.message);
   }
 
   if (result.error?.status === 401) {
@@ -62,5 +55,6 @@ const baseQueryWithRefreshToken: BaseQueryFn<
 export const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithRefreshToken,
+  tagTypes: ["users", "posts", "singlePost", "singleUser", "Booking"],
   endpoints: () => ({}),
 });

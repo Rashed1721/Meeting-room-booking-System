@@ -23,7 +23,7 @@ const BookingSummary: React.FC = () => {
   const [updateUser] = useUpdateUserMutation();
   const [addBooking] = useAddBookingMutation();
   const bookingSummary = location.state as BookingSummaryProps;
-  const Tslot = [];
+  const Tslot: any[] = [];
   Tslot.push(bookingSummary.Timeslot);
   const userInfo = {
     name: bookingSummary.userName,
@@ -41,6 +41,7 @@ const BookingSummary: React.FC = () => {
       slot: Tslot,
       userInfo: userInfo,
     };
+    console.log({ bookingInfo });
     const res = await addBooking(bookingInfo).unwrap();
     console.log({ res });
     if (res.success) {

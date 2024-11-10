@@ -7,7 +7,7 @@ export interface Room {
 }
 
 export type TRoom = {
-  name: string;
+  name: any;
   roomNo: number;
   floorNo: number;
   capacity: number;

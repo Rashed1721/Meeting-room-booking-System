@@ -5,38 +5,40 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import PHForm from "../../components/Form/BSForm";
 import PHInput from "../../components/Form/BSInput";
-import Navbar from "../shared/Navbar/Navbar";
-import Footer from "../shared/Footer";
+
+import { useSignupMutation } from "../../redux/features/auth/authApi";
 
 const SignUp = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
+  const [signup] = useSignupMutation();
   const onSubmit = async (data: FieldValues) => {
-    console.log(data);
-    // const toastId = toast.loading("Logging in");
-    // try {
-    //   const userInfo = {
-    //     id: data.userId,
-    //     password: data.password,
-    //   };
+    const toastId = toast.loading("signing up");
+    try {
+      const userInfo = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        phone: data.phone,
+        address: data.address,
+        role: "user",
+      };
 
-    //   const res = await login(userInfo).unwrap();
-    //   console.log(res);
-    //   const user = verifyToken(res.data.accessToken) as TUser;
+      const res = await signup(userInfo).unwrap();
+      console.log({ res });
 
-    //   dispatch(setUser({ user: user, token: res.data.accessToken }));
+      // dispatch(setUser({ user: user, token: res.data.accessToken }));
 
-    //   toast.success("Logged in", { id: toastId, duration: 2000 });
+      toast.success("Signed up", { id: toastId, duration: 2000 });
 
-    //   navigate(`/${user.role}/dashboard`);
-    // } catch (err) {
-    //   toast.error("Something went wrong", { id: toastId, duration: 2000 });
-    // }
+      navigate(`/${res?.data?.role}`);
+    } catch (err) {
+      toast.error("Something went wrong", { id: toastId, duration: 2000 });
+    }
   };
 
   return (
     <>
-      <Navbar />
       <Row
         justify="center"
         align="middle"
@@ -89,7 +91,6 @@ const SignUp = () => {
           </PHForm>
         </Col>
       </Row>
-      <Footer />
     </>
   );
 };

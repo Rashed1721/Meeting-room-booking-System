@@ -15,7 +15,7 @@ const HeroSection = () => {
           Welcome to Our Site
         </h1>
         <a
-          href="#"
+          href="/meeting-rooms"
           className="px-6 py-3 bg-blue-500 hover:bg-blue-700 rounded-full text-lg font-semibold transition duration-300"
         >
           Get Started

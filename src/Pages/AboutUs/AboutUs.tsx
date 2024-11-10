@@ -1,11 +1,7 @@
 import { motion } from "framer-motion";
-import Navbar from "../shared/Navbar/Navbar";
-import Footer from "../shared/Footer";
-
 const AboutUs = () => {
   return (
     <div className="bg-gray-100 text-gray-800">
-      <Navbar isAuthenticated={true} isAdmin={true} />
       {/* Our Mission Section */}
       <section className="container mx-auto px-4 py-12 text-center">
         <motion.h2
@@ -102,7 +98,6 @@ const AboutUs = () => {
           customers’ needs.
         </motion.p>
       </section>
-      <Footer />
     </div>
   );
 };

@@ -3,35 +3,29 @@ import { baseApi } from "../../../api/baseApi";
 export const bookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     addBooking: builder.mutation({
-      query: (BookingInfo) => {
-        // console.log("BookingInfo from api==>", BookingInfo);
-        return {
-          url: "/bookings",
-          method: "POST",
-          body: BookingInfo,
-        };
-      },
+      query: (BookingInfo) => ({
+        url: "/bookings",
+        method: "POST",
+        body: BookingInfo,
+      }),
+      invalidatesTags: ["Booking"], // Invalidate to trigger refetch of booking data
     }),
 
     getAllBooking: builder.query({
-      query: () => {
-        return {
-          url: "/bookings",
-          method: "GET",
-        };
-      },
+      query: () => ({
+        url: "/bookings",
+        method: "GET",
+      }),
+      providesTags: ["Booking"],
     }),
 
     updateBooking: builder.mutation({
-      query: ({ id, bookingValue }) => {
-        console.log("from update booking==>", id, bookingValue);
-
-        return {
-          url: `/bookings/${id}`,
-          method: "PUT",
-          body: bookingValue,
-        };
-      },
+      query: ({ id, bookingValue }) => ({
+        url: `/bookings/${id}`,
+        method: "PUT",
+        body: bookingValue,
+      }),
+      invalidatesTags: ["Booking"], // Invalidate to trigger refetch of booking data
     }),
 
     deleteBooking: builder.mutation({
@@ -39,6 +33,7 @@ export const bookingApi = baseApi.injectEndpoints({
         url: `/bookings/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["Booking"], // Invalidate to trigger refetch of booking data
     }),
   }),
 });

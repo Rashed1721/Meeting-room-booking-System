@@ -12,14 +12,35 @@ export const roomApi = baseApi.injectEndpoints({
         };
       },
     }),
+    // GetAllRooms: builder.query({
+    //   query: () => {
+    //     return {
+    //       url: "/rooms",
+    //       method: "GET",
+    //     };
+    //   },
+    // }),
     GetAllRooms: builder.query({
-      query: () => {
+      query: ({
+        searchTerm = "",
+        sort = "pricePerSlot",
+        limit = 6,
+        page = 1,
+      }) => {
+        const params = new URLSearchParams({
+          searchTerm,
+          sort,
+          limit: limit.toString(),
+          page: page.toString(),
+        });
+
         return {
-          url: "/rooms",
+          url: `/rooms?${params.toString()}`,
           method: "GET",
         };
       },
     }),
+
     GetSingleRoom: builder.query({
       query: (id: string | undefined) => {
         return {
