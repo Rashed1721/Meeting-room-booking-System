@@ -35,7 +35,7 @@ const MainLayout = () => {
   } bg-white text-[#1c4456]`;
 
   return (
-    <div>
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
       <div className={navbarClasses}>
         <Navbar />
       </div>

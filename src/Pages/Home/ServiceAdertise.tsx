@@ -7,10 +7,12 @@ import {
 
 const ServiceAdvertisement = () => {
   return (
-    <section className="bg-gray-100 py-12">
+    <section className=" py-8 mt-5">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-3xl font-bold mb-8 text-gray-800">Our Services</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <h2 className="text-2xl  md:text-4xl my-5 font-bold tracking-wide capitalize text-gray-800">
+          Our Services
+        </h2>
+        <div className=" mt-16  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
           {/* Real-Time Availability */}
           <div className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300">
             <FaClock className="text-blue-500 text-5xl mx-auto mb-4" />

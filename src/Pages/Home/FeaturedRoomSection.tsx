@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 const FeaturedRooms = ({ rooms }: any) => {
   return (
     <section className="bg-gray-100 py-12">
-      <div className="container mx-auto px-4 text-center">
+      <div className=" mx-auto  text-center">
         <h2 className="text-3xl font-bold mb-8 text-gray-800">
           Featured Rooms
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {rooms.map((room: any) => (
             <div
               key={room.id}

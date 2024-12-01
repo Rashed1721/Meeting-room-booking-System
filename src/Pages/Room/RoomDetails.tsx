@@ -7,20 +7,20 @@ const RoomDetails = () => {
   const { data: room, isLoading, error } = useGetSingleRoomQuery(id);
 
   if (isLoading)
-    return <p className="text-center py-8">Loading room details...</p>;
+    return <p className="text-center py-8 h-screen">Loading room details...</p>;
   if (error)
     return (
-      <p className="text-center py-8 text-red-500">
+      <p className="text-center py-8 text-red-500 h-screen">
         Failed to load room details.
       </p>
     );
 
   return (
     <div>
-      <div className="flex flex-col md:flex-row max-w-6xl mx-auto p-6 md:p-10 bg-gray-50 gap-10">
+      <div className="flex flex-col md:flex-row max-w-6xl mx-auto p-6 md:p-10 bg-gray-50 gap-10  h-screen">
         {/* Room Information */}
 
-        <div className="room-info bg-white p-8 rounded-lg shadow-lg flex-1">
+        <div className="room-info bg-white p-8 rounded-lg shadow-lg flex-1 h-full">
           <h1 className="text-4xl font-bold text-gray-800 mb-4">
             {room?.data?.name}
           </h1>

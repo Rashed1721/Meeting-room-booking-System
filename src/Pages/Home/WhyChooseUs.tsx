@@ -3,12 +3,12 @@ import { FiCheckCircle, FiShield } from "react-icons/fi";
 
 const WhyChooseUs: FC = () => {
   return (
-    <section className="bg-white py-20">
+    <section className="py-8">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold mb-12 text-gray-800">
+        <h2 className="text-2xl  md:text-4xl my-5 font-bold tracking-wide capitalize  text-gray-800">
           Why Choose Us?
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Seamless Booking Experience */}
           <div
             className="relative p-8 bg-cover bg-center bg-gray-100 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 min-h-[300px]"

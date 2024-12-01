@@ -7,7 +7,7 @@ const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const user = useAppSelector((state) => state.auth.user);
   const location = useLocation();
 
-  if (user && user?.role === "user") {
+  if ((user && user?.role === "user") || user?.role === "admin") {
     return children;
   }
 

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const MeetingRooms = () => {
   const { data: rooms, isLoading, error } = useGetAllRoomsQuery({});
+  console.log({ rooms });
   const navigate = useNavigate();
 
   if (isLoading) {
@@ -22,21 +23,21 @@ const MeetingRooms = () => {
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-6 py-10">
+    <div className="w-full mx-auto  py-8  bg-gray-100 ">
       {/* Headline */}
-      <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
+      <h2 className="text-2xl  md:text-4xl my-5 font-bold tracking-wide capitalize text-center text-gray-800 mb-8">
         Our Meeting Rooms
       </h2>
 
       {/* Rooms Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {rooms?.data?.slice(0, 6).map((room: any) => (
+      <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {rooms?.data?.slice(0, 7).map((room: any) => (
           <RoomCard key={room.id} room={room} />
         ))}
       </div>
 
       {/* All Rooms Button */}
-      <div className="text-center mt-8">
+      <div className="text-center mt-14">
         <button
           onClick={() => navigate("/meeting-rooms")}
           className="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-300"

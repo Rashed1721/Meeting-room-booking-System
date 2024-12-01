@@ -21,6 +21,8 @@ import ProtectedRoute from "../Layout/ProtectedRoute";
 import AdminLayout from "../Layout/AdminLayout";
 import MainLayout from "../Layout/MainLayout";
 import AdminRoute from "./PrivateAdminRoute";
+import Faq from "../Pages/FAQ/Faq";
+import Service from "../Pages/services/Service";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp />,
+      },
+      {
+        path: "/faq",
+        element: <Faq />,
+      },
+      {
+        path: "/service",
+        element: <Service />,
       },
       {
         path: "/login",
