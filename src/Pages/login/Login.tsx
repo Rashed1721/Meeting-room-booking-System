@@ -31,15 +31,14 @@ const Login = () => {
 
       const res = await login(userInfo).unwrap();
       const user = verifyToken(res.token) as TUser;
-      console.log({ user });
+
       dispatch(setUser({ user, token: res.token }));
 
       toast.success("Logged in", { id: toastId, duration: 2000 });
 
       // Redirect to the user's intended page or their dashboard if none specified
-      navigate(user.role === "admin" ? `/${user.role}` : from, {
-        replace: true,
-      });
+      const redirectTo = from || `/${user.role}`;
+      navigate(redirectTo, { replace: true });
     } catch (err: any) {
       toast.error(`${err?.data?.message}`, { id: toastId, duration: 2000 });
     }

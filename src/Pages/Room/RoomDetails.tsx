@@ -16,8 +16,8 @@ const RoomDetails = () => {
     );
 
   return (
-    <div>
-      <div className="flex flex-col md:flex-row max-w-6xl mx-auto p-6 md:p-10 bg-gray-50 gap-10  h-screen">
+    <div className="w-full bg-gray-50">
+      <div className=" flex flex-col md:flex-row max-w-6xl mx-auto p-6 md:p-10  gap-10  h-screen">
         {/* Room Information */}
 
         <div className="room-info bg-white p-8 rounded-lg shadow-lg flex-1 h-full">

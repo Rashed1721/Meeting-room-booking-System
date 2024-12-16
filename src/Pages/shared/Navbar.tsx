@@ -16,8 +16,8 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+    <header className="shadow-md">
+      <div className=" px-4 py-4 flex items-center justify-between bg-white">
         {/* Logo/System Name */}
         <Link to="/" className="text-xl font-bold text-blue-600">
           RoomEase

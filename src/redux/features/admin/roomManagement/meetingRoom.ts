@@ -18,7 +18,7 @@ export const roomApi = baseApi.injectEndpoints({
       query: ({
         searchTerm = "",
         sort = "pricePerSlot",
-        limit = 6,
+        limit = 8,
         page = 1,
       }) => {
         const params = new URLSearchParams({

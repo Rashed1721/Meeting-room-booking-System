@@ -39,10 +39,10 @@ const UpdateSlot = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Update Slot</h1>
+      <h1 className="text-2xl font-semibold mb-4 text-center">UPDATE SLOT</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 max-w-xl mx-auto p-6 bg-white shadow-lg rounded-lg"
+        className="space-y-6 max-w-full mx-auto p-6 bg-white shadow-lg rounded-lg"
       >
         <div className="flex flex-col space-y-2">
           <label className="font-medium text-gray-600">Room ID</label>
@@ -50,7 +50,7 @@ const UpdateSlot = () => {
             {...register("room", { required: true })}
             defaultValue={slot?.data?.room}
             placeholder="Room ObjectId"
-            className="input-field border border-gray-300"
+            className="input-field border p-2 border-gray-300"
           />
         </div>
 
@@ -61,7 +61,7 @@ const UpdateSlot = () => {
             {...register("date", { required: true })}
             defaultValue={slot?.data?.date}
             placeholder="Date"
-            className="input-field border border-gray-300"
+            className="input-field border p-2 border-gray-300"
           />
         </div>
 
@@ -73,7 +73,7 @@ const UpdateSlot = () => {
               {...register("startTime", { required: true })}
               defaultValue={slot?.data?.startTime}
               placeholder="Start Time"
-              className="input-field border border-gray-300"
+              className="input-field border p-2 border-gray-300"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -83,7 +83,7 @@ const UpdateSlot = () => {
               {...register("endTime", { required: true })}
               defaultValue={slot?.data?.endTime}
               placeholder="End Time"
-              className="input-field border border-gray-300"
+              className="input-field border p-2 border-gray-300"
             />
           </div>
         </div>
@@ -93,7 +93,7 @@ const UpdateSlot = () => {
           <select
             {...register("isBooked", { required: true })}
             defaultValue={slot?.data?.isBooked ? "true" : "false"}
-            className="input-field border border-gray-300"
+            className="input-field border p-2 border-gray-300"
           >
             <option value="false">No</option>
             <option value="true">Yes</option>
@@ -104,7 +104,7 @@ const UpdateSlot = () => {
           type="submit"
           className="w-full py-2 mt-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
         >
-          Update Slot
+          SUBMIT
         </button>
       </form>
     </div>

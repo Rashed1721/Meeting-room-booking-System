@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
-    <div className="bg-gray-100 text-gray-800">
+    <div className=" text-gray-800">
       {/* Our Mission Section */}
       <section className="container mx-auto px-4 py-12 text-center">
         <motion.h2
@@ -82,7 +82,7 @@ const AboutUs = () => {
       </section>
 
       {/* Our Story Section */}
-      <section className="container mx-auto px-4 py-12 text-center bg-white">
+      <section className="container mx-auto px-4 py-28 text-center  bg-white">
         <motion.h2
           className="text-4xl font-bold mb-4"
           initial={{ opacity: 0, y: -20 }}

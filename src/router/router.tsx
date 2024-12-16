@@ -23,6 +23,7 @@ import MainLayout from "../Layout/MainLayout";
 import AdminRoute from "./PrivateAdminRoute";
 import Faq from "../Pages/FAQ/Faq";
 import Service from "../Pages/services/Service";
+import AdminDashboardDefault from "../Pages/admin/AdminDashboardDefault";
 
 const router = createBrowserRouter([
   {
@@ -94,6 +95,14 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
+        index: true,
+        element: (
+          <AdminRoute>
+            <AdminDashboardDefault />
+          </AdminRoute>
+        ),
+      },
+      {
         path: "add-rooms",
         element: (
           <AdminRoute>
@@ -158,6 +167,14 @@ const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
+      {
+        index: true,
+        element: (
+          <ProtectedRoute>
+            <AdminDashboardDefault />
+          </ProtectedRoute>
+        ),
+      },
       {
         path: "my-booking",
         element: (

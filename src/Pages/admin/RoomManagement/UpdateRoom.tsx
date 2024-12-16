@@ -45,10 +45,10 @@ const UpdateRoom = () => {
 
   return (
     <div className="p-4">
-      <h1 className="text-2xl font-semibold mb-4">Update Room</h1>
+      <h1 className="text-2xl font-semibold mb-4 text-center">UPDATE ROOM</h1>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="space-y-6 max-w-xl mx-auto p-6 bg-white shadow-lg rounded-lg"
+        className="space-y-6 max-w-full mx-auto p-6 bg-white shadow-lg rounded-lg"
       >
         <div className="flex flex-col space-y-2">
           <label className="font-medium text-gray-600">Room Name</label>
@@ -56,7 +56,7 @@ const UpdateRoom = () => {
             {...register("name", { required: true })}
             defaultValue={room?.data?.name} // Setting default value from room data
             placeholder="Room Name"
-            className="input-field border border-gray-300"
+            className="input-field border p-2 border-gray-300"
           />
         </div>
 
@@ -68,7 +68,7 @@ const UpdateRoom = () => {
               {...register("roomNo", { required: true, valueAsNumber: true })}
               defaultValue={room?.data?.roomNo}
               placeholder="Room Number"
-              className="input-field border border-gray-300"
+              className="input-field border p-2 border-gray-300"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -78,7 +78,7 @@ const UpdateRoom = () => {
               {...register("floorNo", { required: true, valueAsNumber: true })}
               defaultValue={room?.data?.floorNo}
               placeholder="Floor Number"
-              className="input-field border border-gray-300"
+              className="input-field border p-2 border-gray-300"
             />
           </div>
         </div>
@@ -91,7 +91,7 @@ const UpdateRoom = () => {
               {...register("capacity", { required: true, valueAsNumber: true })}
               defaultValue={room?.data?.capacity}
               placeholder="Capacity"
-              className="input-field border border-gray-300"
+              className="input-field border p-2 border-gray-300"
             />
           </div>
           <div className="flex flex-col space-y-2">
@@ -104,7 +104,7 @@ const UpdateRoom = () => {
               })}
               defaultValue={room?.data?.pricePerSlot}
               placeholder="Price Per Slot"
-              className="input-field border border-gray-300"
+              className="input-field p-2 border border-gray-300"
             />
           </div>
         </div>
@@ -117,7 +117,7 @@ const UpdateRoom = () => {
               {...register(`amenities.${index}`, { required: true })}
               defaultValue={amenity}
               placeholder="Amenity"
-              className="input-field border border-gray-300 mb-2"
+              className="input-field border p-2 border-gray-300 mb-2"
             />
           ))}
         </div>
@@ -130,7 +130,7 @@ const UpdateRoom = () => {
               {...register(`images.${index}`, { required: true })}
               defaultValue={image}
               placeholder="Image URL"
-              className="input-field border border-gray-300 mb-2"
+              className="input-field border p-2 border-gray-300 mb-2"
             />
           ))}
         </div>

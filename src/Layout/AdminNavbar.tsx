@@ -1,13 +1,14 @@
 import { Link, useNavigate } from "react-router-dom";
-
 import { useState } from "react";
-import { useAppDispatch } from "../redux/hook";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { logout } from "../redux/features/auth/authSlice";
+import { Menu, Dropdown, Avatar } from "antd";
+import { UserOutlined, DownOutlined } from "@ant-design/icons";
 
 const AdminNavbar = () => {
+  const user = useAppSelector((state) => state.auth.user);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-
   const dispatch = useAppDispatch();
 
   const handleLogout = () => {
@@ -15,54 +16,40 @@ const AdminNavbar = () => {
     navigate("/");
   };
 
+  const menu = (
+    <Menu>
+      {/* <Menu.Item key="profile">
+        <Link to="/profile">Profile</Link>
+      </Menu.Item>
+      <Menu.Item key="settings">
+        <Link to="/settings">Settings</Link>
+      </Menu.Item> */}
+      <Menu.Item key="logout" onClick={handleLogout}>
+        Logout
+      </Menu.Item>
+    </Menu>
+  );
+
   return (
-    <header className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo/System Name */}
-        <Link to="/" className="text-xl font-bold text-blue-600">
-          System Name
-        </Link>
-
-        {/* Nav Links for Desktop */}
-        <nav className="hidden md:flex space-x-6">
-          <Link to="/" className="text-gray-700 hover:text-blue-500">
-            Home
-          </Link>
-          <Link
-            to="/meeting-rooms"
-            className="text-gray-700 hover:text-blue-500"
-          >
-            Meeting Rooms
-          </Link>
-          <Link to="/about" className="text-gray-700 hover:text-blue-500">
-            About Us
-          </Link>
-          <Link to="/contact" className="text-gray-700 hover:text-blue-500">
-            Contact Us
-          </Link>
-        </nav>
-
-        <div>
-          <Link
-            to="/login"
-            onClick={handleLogout}
-            className="text-gray-700 hover:text-blue-500"
-          >
-            Logout
-          </Link>
+    <div className="flex items-center justify-between px-6">
+      <Link to="/" className="text-xl font-bold text-blue-600">
+        RoomEase
+      </Link>
+      <Dropdown overlay={menu} trigger={["click"]}>
+        <div className="flex items-center gap-2 cursor-pointer">
+          <Avatar size="small" icon={<UserOutlined />} />
+          <span>{user?.role}</span>
+          <DownOutlined />
         </div>
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-gray-700"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          ☰
-        </button>
-      </div>
-
-      {/* Mobile Nav Links */}
+      </Dropdown>
+      <button
+        className="md:hidden text-gray-700"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        ☰
+      </button>
       {isOpen && (
-        <nav className="md:hidden bg-white shadow-md">
+        <nav className="absolute right-0 top-full bg-white shadow-lg p-4 w-full">
           <Link
             to="/"
             className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
@@ -87,17 +74,15 @@ const AdminNavbar = () => {
           >
             Contact Us
           </Link>
-
-          <Link
-            to="/login"
+          <button
             onClick={handleLogout}
-            className="text-gray-700 hover:text-blue-500"
+            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
           >
             Logout
-          </Link>
+          </button>
         </nav>
       )}
-    </header>
+    </div>
   );
 };
 

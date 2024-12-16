@@ -35,10 +35,10 @@ const CreateSlot = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 max-w-xl mx-auto p-6 bg-white shadow-lg rounded-lg"
+      className="space-y-6 max-w-full mx-auto p-6 bg-white shadow-lg rounded-lg"
     >
       <h2 className="text-2xl font-semibold text-gray-700 text-center">
-        Create Slot
+        CREATE SLOT
       </h2>
 
       <div className="flex flex-col space-y-2">
@@ -46,7 +46,7 @@ const CreateSlot = () => {
         <input
           {...register("room", { required: true })}
           placeholder="Room ID"
-          className="input-field border border-gray-300"
+          className="input-field p-2 border border-gray-300"
         />
       </div>
 
@@ -55,7 +55,7 @@ const CreateSlot = () => {
         <input
           type="date"
           {...register("date", { required: true })}
-          className="input-field border border-gray-300"
+          className="input-field border p-2 border-gray-300"
         />
       </div>
 
@@ -65,7 +65,7 @@ const CreateSlot = () => {
           <input
             type="time"
             {...register("startTime", { required: true })}
-            className="input-field border border-gray-300"
+            className="input-field border p-2 border-gray-300"
           />
         </div>
         <div className="flex flex-col space-y-2">
@@ -73,7 +73,7 @@ const CreateSlot = () => {
           <input
             type="time"
             {...register("endTime", { required: true })}
-            className="input-field border border-gray-300"
+            className="input-field border p-2 border-gray-300"
           />
         </div>
       </div>

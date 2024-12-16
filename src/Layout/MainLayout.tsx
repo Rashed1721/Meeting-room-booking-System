@@ -33,9 +33,9 @@ const MainLayout = () => {
   const navbarClasses = `sticky top-0 z-20 ${
     scrolling ? "lg:bg-opacity-80  lg:backdrop-blur-lg" : "bg-opacity-[100%]"
   } bg-white text-[#1c4456]`;
-
+  // className = " mx-auto px-4 sm:px-6 lg:px-8";
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div>
       <div className={navbarClasses}>
         <Navbar />
       </div>

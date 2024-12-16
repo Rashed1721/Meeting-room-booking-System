@@ -45,10 +45,10 @@ const CreateRoom = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 max-w-xl mx-auto p-6 bg-white shadow-lg rounded-lg"
+      className="space-y-6 max-w-full mx-auto p-6 bg-white shadow-lg rounded-lg"
     >
       <h2 className="text-2xl font-semibold text-gray-700 text-center">
-        Add Room
+        ADD ROOM
       </h2>
 
       <div className="flex flex-col space-y-2">
@@ -56,7 +56,7 @@ const CreateRoom = () => {
         <input
           {...register("name", { required: true })}
           placeholder="Conference Room A"
-          className="input-field border border-gray-300"
+          className="input-field border p-2 border-gray-300"
         />
       </div>
 
@@ -67,7 +67,7 @@ const CreateRoom = () => {
             type="number"
             {...register("roomNo", { required: true, valueAsNumber: true })}
             placeholder="101"
-            className="input-field border border-gray-300"
+            className="input-field p-2 border border-gray-300"
           />
         </div>
         <div className="flex flex-col space-y-2">
@@ -76,7 +76,7 @@ const CreateRoom = () => {
             type="number"
             {...register("floorNo", { required: true, valueAsNumber: true })}
             placeholder="1"
-            className="input-field border border-gray-300"
+            className="input-field p-2 border border-gray-300"
           />
         </div>
       </div>
@@ -88,7 +88,7 @@ const CreateRoom = () => {
             type="number"
             {...register("capacity", { required: true, valueAsNumber: true })}
             placeholder="10"
-            className="input-field border border-gray-300"
+            className="input-field p-2 border border-gray-300"
           />
         </div>
         <div className="flex flex-col space-y-2">
@@ -102,7 +102,7 @@ const CreateRoom = () => {
               valueAsNumber: true,
             })}
             placeholder="50"
-            className="input-field border border-gray-300"
+            className="input-field  p-2border border-gray-300"
           />
         </div>
       </div>
@@ -114,7 +114,7 @@ const CreateRoom = () => {
             <input
               {...register(`amenities.${index}`, { required: true })}
               placeholder="Amenity"
-              className="input-field border border-gray-300"
+              className="input-field  p-2 border border-gray-300"
             />
             <button
               type="button"

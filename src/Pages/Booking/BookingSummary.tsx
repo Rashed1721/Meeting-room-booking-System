@@ -54,69 +54,93 @@ const BookingSummary: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-8 bg-white shadow-lg rounded-lg mt-10">
-      <h1 className="text-2xl font-semibold text-center mb-6 text-blue-600">
-        Booking Summary
-      </h1>
-      <div className="space-y-4 md:space-y-6">
-        <div className="p-4 bg-gray-100 rounded-lg shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-800">Room Details</h2>
-          <p className="text-gray-600">
-            Room Name:{" "}
-            <span className="font-medium">{bookingSummary.roomName}</span>
-          </p>
+    <div className="max-w-4xl mx-auto px-8 py-8 bg-white shadow-xl rounded-lg mt-10">
+      <div className="border-b-2 pb-4 mb-6 border-gray-300">
+        <h1 className="text-3xl font-bold text-center text-blue-600">
+          Booking Summary
+        </h1>
+        <div className="flex justify-between mt-4">
+          {/* <div>
+            <h2 className="text-xl font-semibold text-gray-800">
+              Booking Summary
+            </h2>
+            <p className="text-gray-600 text-sm">Room Booking Invoice</p>
+          </div> */}
+          {/* <div className="text-right">
+            <p className="text-sm text-gray-600">Date: {bookingSummary.date}</p>
+          </div> */}
         </div>
-        <div className="p-4 bg-gray-100 rounded-lg shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-800">
-            Booking Date & Time
-          </h2>
-          <p className="text-gray-600">
-            Date: <span className="font-medium">{bookingSummary.date}</span>
-          </p>
-          <p className="text-gray-600">
-            Time Slot:{" "}
-            <span className="font-medium">{bookingSummary.timeSlot}</span>
-          </p>
-        </div>
-        <div className="p-4 bg-gray-100 rounded-lg shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-800">Cost</h2>
-          <p className="text-gray-600">
-            Total Cost:{" "}
-            <span className="font-medium text-blue-600">
-              {bookingSummary.cost}
-            </span>
-          </p>
-        </div>
-        <div className="p-4 bg-gray-100 rounded-lg shadow-sm">
-          <h2 className="text-xl font-semibold text-gray-800">
-            User Information
-          </h2>
-          <p className="text-gray-600">
-            Name: <span className="font-medium">{bookingSummary.userName}</span>
-          </p>
-          <p className="text-gray-600">
-            Phone:{" "}
-            <span className="font-medium">{bookingSummary.userPhone}</span>
-          </p>
-          <p className="text-gray-600">
-            Email:{" "}
-            <span className="font-medium">{bookingSummary.userEmail}</span>
-          </p>
-          <p className="text-gray-600">
-            Address
-            <span className="font-medium">{bookingSummary.userAddress}</span>
-          </p>
+      </div>
+
+      <div className="mb-8">
+        <div className="flex justify-between mb-4">
+          <div className="w-1/2">
+            <h3 className="text-xl font-semibold text-gray-800">
+              Room Details
+            </h3>
+            <div className="mt-2">
+              <p className="text-gray-700">
+                Room Name:{" "}
+                <span className="font-medium">{bookingSummary.roomName}</span>
+              </p>
+              <p className="text-sm text-gray-600">
+                Date: {bookingSummary.date}
+              </p>
+              <p className="text-gray-700">
+                Time Slot:{" "}
+                <span className="font-medium">{bookingSummary.timeSlot}</span>
+              </p>
+            </div>
+          </div>
+          <div className="w-1/2 text-right">
+            <h3 className="text-xl font-semibold text-gray-800">Cost</h3>
+            <p className="text-lg font-medium text-blue-600">
+              ${bookingSummary.cost}
+            </p>
+          </div>
         </div>
 
-        <div className="text-center">
-          <button
-            onClick={handleOnlick}
-            type="submit"
-            className="w-1/2 py-3 bg-blue-500 text-white rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 "
-          >
-            Proced Payment
-          </button>
+        <hr className="border-t-2 border-gray-300 mb-4" />
+
+        <div className="flex justify-between mb-4">
+          <div className="w-1/2">
+            <h3 className="text-xl font-semibold text-gray-800">
+              User Information
+            </h3>
+            <div className="mt-2">
+              <p className="text-gray-700">
+                Name:{" "}
+                <span className="font-medium">{bookingSummary.userName}</span>
+              </p>
+              <p className="text-gray-700">
+                Phone:{" "}
+                <span className="font-medium">{bookingSummary.userPhone}</span>
+              </p>
+              <p className="text-gray-700">
+                Email:{" "}
+                <span className="font-medium">{bookingSummary.userEmail}</span>
+              </p>
+              <p className="text-gray-700">
+                Address:{" "}
+                <span className="font-medium">
+                  {bookingSummary.userAddress}
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
+
+        <hr className="border-t-2 border-gray-300 mb-6" />
+      </div>
+
+      <div className="text-center mt-6">
+        <button
+          onClick={handleOnlick}
+          type="submit"
+          className="w-full sm:w-1/2 py-3 bg-blue-500 text-white text-xl rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+        >
+          Proceed to Payment
+        </button>
       </div>
     </div>
   );
